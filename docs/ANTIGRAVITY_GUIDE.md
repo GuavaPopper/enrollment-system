@@ -106,11 +106,14 @@ TYPOGRAPHY:
 - Style: Clean, minimalist, tracking-tight
 - Large hero text (6xl-8xl), readable body (base-lg)
 
-COLORS:
-- Background: #0A0A0A (match image sequence background)
-- Primary: Blue (#1E40AF) - HMIF brand color
-- Accent: Orange (#F97316)
-- Text: High contrast white/dark
+COLORS (HMIF Official Brand Colors):
+- Background: #0A0A0A (dark, match image sequence background)
+- **Primary: #4A9FF5 (HMIF Light Blue - main brand color from logo)**
+- **Secondary: #1E3A5F (HMIF Dark Blue/Navy - from logo outline)**
+- **Accent: #000000 (Black - for emphasis, from logo center)**
+- Text: High contrast white (#FFFFFF) on dark backgrounds
+- Success: #10B981 (Green)
+- Error: #EF4444 (Red)
 - Seamless blending for image edges
 
 === CORE FEATURES ===
@@ -581,16 +584,24 @@ Table: cohort_members
 
 === DESIGN REQUIREMENTS ===
 
-Colors:
+Colors (HMIF Brand Colors - from official logo):
 - Background: #0A0A0A (dark, matches image sequence)
 - Background Secondary: #1A1A1A
-- Primary: Blue (#1E40AF)
-- Accent: Orange (#F97316)
+- **Primary: #4A9FF5 (HMIF Light Blue - main brand color from logo)**
+- **Secondary: #1E3A5F (HMIF Dark Blue/Navy - from logo circles & outline)**
+- **Accent: #000000 (Black - for emphasis, like "MIF" in logo)**
 - Success: Green (#10B981)
 - Error: Red (#EF4444)
 - Text Primary: #FFFFFF
 - Text Secondary: #A0A0A0
 - Seamless blending for image sequence edges
+
+Brand Color Usage:
+- Primary buttons & CTAs: #4A9FF5 (HMIF Light Blue)
+- Navbar & footer: #1E3A5F (HMIF Dark Blue)
+- Headings & important text: Can use black (#000000) for emphasis
+- Hover states: Lighter shade of #4A9FF5
+- Gradients: Combine #4A9FF5 → #1E3A5F for depth
 
 Typography:
 - Font family: **Outfit** from Google Fonts (NOT Inter)
@@ -614,7 +625,7 @@ Components:
 - Custom components for scrollytelling (SequenceScroll, TextReveal, MagneticButton)
 - Responsive (mobile-first)
 - Card-based layouts with hover effects
-- Dark theme with vibrant accents
+- Dark theme with HMIF brand colors (#4A9FF5 & #1E3A5F)
 
 === PAGES & ROUTES (BAHASA INDONESIA URLs & Page Titles) ===
 
