@@ -6,7 +6,7 @@ Panduan lengkap untuk membangun Enrollment Management System untuk **Himpunan Ma
 
 ## 🎓 TENTANG PROJECT INI
 
-**Organisasi:** Himpunan Mahasiswa Informatika (HIMAFORMATIKA)  
+**Organisasi:** Himpunan Mahasiswa Informatika (HMIF)  
 **Fakultas:** Teknik  
 **Universitas:** Universitas Tanjungpura, Pontianak  
 **Tujuan:** Website pendaftaran Bootcamp/Pelatihan untuk mahasiswa & pelajar  
@@ -61,10 +61,10 @@ Gunakan prompt ini di Antigravity untuk generate project:
 ### **PROMPT UNTUK ANTIGRAVITY**
 
 ```
-Build an Enrollment Management System for Himpunan Mahasiswa Informatika (HIMAFORMATIKA) Fakultas Teknik Universitas Tanjungpura with AWWWARDS-LEVEL MODERN SCROLLYTELLING DESIGN.
+Build an Enrollment Management System for Himpunan Mahasiswa Informatika (HMIF) Fakultas Teknik Universitas Tanjungpura with AWWWARDS-LEVEL MODERN SCROLLYTELLING DESIGN.
 
 === PROJECT CONTEXT ===
-**Organization:** Himpunan Mahasiswa Informatika (HIMAFORMATIKA)
+**Organization:** Himpunan Mahasiswa Informatika (HMIF)
 **Institution:** Fakultas Teknik, Universitas Tanjungpura, Pontianak
 **Purpose:** Bootcamp/Training Program Registration System
 **Language:** **BAHASA INDONESIA** (all UI text, labels, buttons, hints)
@@ -76,7 +76,7 @@ DESIGN INSPIRATION: Awwwards-winning websites with scroll-linked animations, sea
 
 === USER ROLES ===
 1. Applicants (Students/Public) - Experience the scrollytelling landing, register, track application
-2. Admins (HIMAFORMATIKA Committee) - Review, approve/reject applications, manage cohorts
+2. Admins (HMIF Committee) - Review, approve/reject applications, manage cohorts
 
 === LANGUAGE REQUIREMENT ===
 **ALL USER-FACING TEXT MUST BE IN BAHASA INDONESIA:**
@@ -108,7 +108,7 @@ TYPOGRAPHY:
 
 COLORS:
 - Background: #0A0A0A (match image sequence background)
-- Primary: Blue (#1E40AF) - HIMAFORMATIKA brand color
+- Primary: Blue (#1E40AF) - HMIF brand color
 - Accent: Orange (#F97316)
 - Text: High contrast white/dark
 - Seamless blending for image edges
@@ -127,7 +127,7 @@ COLORS:
    - Canvas rendering: HTML5 Canvas for performance
    
    TEXT OVERLAYS (fade in/out based on scroll %) - **BAHASA INDONESIA:**
-   - 0% scroll: "Wujudkan Masa Depanmu" + "Bergabung dengan Bootcamp HIMAFORMATIKA 2026" (Center, large)
+   - 0% scroll: "Wujudkan Masa Depanmu" + "Bergabung dengan Bootcamp HMIF 2026" (Center, large)
    - 30% scroll: "Pendaftaran Multi-Step yang Mudah" (Left aligned, fade in)
    - 60% scroll: "Lacak Status Pendaftaran Real-Time" (Right aligned, fade in)
    - 90% scroll: "Daftar Sekarang" (Center, MAGNETIC BUTTON with spring animation)
@@ -144,7 +144,7 @@ COLORS:
    
    ORDER:
    a) About Section - TEXT REVEAL ANIMATION
-      - Headline: "Tentang HIMAFORMATIKA Bootcamp"
+      - Headline: "Tentang HMIF Bootcamp"
       - Subtext: "Program pelatihan intensif untuk mahasiswa & pelajar di Pontianak"
       - Split text into individual characters
       - Each character reveals (opacity 0 → 1) as user scrolls
@@ -198,17 +198,17 @@ COLORS:
       - Subtle infinite loop animation
    
    h) Footer - CLEAN & MODERN (BAHASA INDONESIA)
-      - Organization: HIMAFORMATIKA Fakultas Teknik UNTAN
+      - Organization: HMIF Fakultas Teknik UNTAN
       - Links: Beranda, Tentang, Program, Riwayat, Kontak
       - Social icons: Instagram, Twitter/X, LinkedIn
       - Contact: email@himaformatika.untan.ac.id, WhatsApp: +62xxx
-      - Copyright: © 2026 HIMAFORMATIKA UNTAN. All rights reserved.
+      - Copyright: © 2026 HMIF UNTAN. All rights reserved.
       - Minimal design
 
 3. NAVBAR - AWWWARDS-LEVEL FULLSCREEN MENU (BAHASA INDONESIA)
    
    DEFAULT STATE:
-   - Minimal: Logo HIMAFORMATIKA (left) + Menu button (right)
+   - Minimal: Logo HMIF (left) + Menu button (right)
    - Fixed position, backdrop blur on scroll
    
    MENU OPENED (fullscreen overlay):
@@ -387,7 +387,7 @@ COLORS:
 
 6. EMAIL NOTIFICATIONS (BAHASA INDONESIA)
    - Welcome email (after registration):
-     * Subject: "Selamat Datang di HIMAFORMATIKA Bootcamp!"
+     * Subject: "Selamat Datang di HMIF Bootcamp!"
      * Body: Greeting + confirmation + next steps (in Indonesian)
    
    - Application submitted confirmation:
@@ -396,14 +396,14 @@ COLORS:
    
    - Status update emails:
      * Under Review - Subject: "Pendaftaran Sedang Direview"
-     * Accepted - Subject: "Selamat! Kamu Diterima di Bootcamp HIMAFORMATIKA"
+     * Accepted - Subject: "Selamat! Kamu Diterima di Bootcamp HMIF"
      * Rejected - Subject: "Informasi Status Pendaftaran"
    
    - Acceptance letter (with download link):
-     * Subject: "Surat Penerimaan Bootcamp HIMAFORMATIKA"
+     * Subject: "Surat Penerimaan Bootcamp HMIF"
    
    - Auto-send on status change
-   - HTML email templates (professional, branded with HIMAFORMATIKA colors)
+   - HTML email templates (professional, branded with HMIF colors)
 
 7. ADMIN: MANAGE COHORTS (BAHASA INDONESIA)
    - Cohorts list page at /admin/cohorts
@@ -619,7 +619,7 @@ Components:
 === PAGES & ROUTES (BAHASA INDONESIA URLs & Page Titles) ===
 
 Public:
-- / → Landing page (title: "HIMAFORMATIKA Bootcamp - Beranda")
+- / → Landing page (title: "HMIF Bootcamp - Beranda")
 - /riwayat → Bootcamp history page (title: "Riwayat Bootcamp")
 - /riwayat/:id → Cohort detail page (title: "Detail Cohort")
 - /masuk → Login page (title: "Masuk")

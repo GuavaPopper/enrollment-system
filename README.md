@@ -1,15 +1,15 @@
-# Enrollment Management System - HIMAFORMATIKA Bootcamp
+# Enrollment Management System - HMIF Bootcamp
 
-**Website Pendaftaran Bootcamp HIMAFORMATIKA**  
+**Website Pendaftaran Bootcamp HMIF**  
 Himpunan Mahasiswa Informatika - Fakultas Teknik - Universitas Tanjungpura
 
-Website pendaftaran online untuk bootcamp/program pelatihan **HIMAFORMATIKA** dengan desain modern Awwwards-level scrollytelling.
+Website pendaftaran online untuk bootcamp/program pelatihan **HMIF** dengan desain modern Awwwards-level scrollytelling.
 
 ---
 
 ## 🎓 Tentang Project
 
-Platform web untuk mengelola pendaftaran peserta bootcamp **Himpunan Mahasiswa Informatika (HIMAFORMATIKA)** Fakultas Teknik Universitas Tanjungpura, Pontianak.
+Platform web untuk mengelola pendaftaran peserta bootcamp **Himpunan Mahasiswa Informatika (HMIF)** Fakultas Teknik Universitas Tanjungpura, Pontianak.
 
 **Fitur Utama:**
 - Modern scrollytelling landing page dengan image sequence animation
@@ -33,7 +33,7 @@ Platform web untuk mengelola pendaftaran peserta bootcamp **Himpunan Mahasiswa I
 - **Dashboard** - Track status: Konsep, Terkirim, Dalam Review, Diterima, Ditolak
 - **Notifikasi Email** - Konfirmasi & update status (Bahasa Indonesia)
 
-### 👨‍💼 Admin Side (Panitia HIMAFORMATIKA)
+### 👨‍💼 Admin Side (Panitia HMIF)
 - **Dashboard Admin** - Kelola semua pendaftaran
 - **Review System** - Terima/Tolak dengan catatan reviewer
 - **Kelola Cohort** - CRUD cohort: cover image, highlights, success stories, gallery
@@ -45,7 +45,7 @@ Platform web untuk mengelola pendaftaran peserta bootcamp **Himpunan Mahasiswa I
 - **Smooth scroll** (Lenis library)
 - **Framer Motion** animations (text reveal, magnetic button, count-up)
 - **Fullscreen navbar** menu
-- **Dark theme** + Blue accent (HIMAFORMATIKA brand)
+- **Dark theme** + Blue accent (HMIF brand)
 - **Typography:** Outfit font (Google Fonts)
 
 ---
