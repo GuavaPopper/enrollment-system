@@ -64,15 +64,43 @@ A full-stack web application for managing bootcamp enrollments with multi-step r
    - Hero section with CTA button "Daftar Sekarang"
    - Timeline section (2 categories: SMK vs Mahasiswa/Umum)
    - Program information
+   - **Bootcamp History section (showcase past cohorts)**
    - Responsive design
 
-2. AUTHENTICATION
+2. BOOTCAMP HISTORY (NEW FEATURE)
+   - Display past bootcamp cohorts (completed programs)
+   - Year filter tabs (2025, 2024, 2023, All Years)
+   - Cohort cards with:
+     * Cover image
+     * Cohort name & year
+     * Period (start - end date)
+     * Total participants
+     * Category badge
+     * Highlights (key achievements)
+     * View Details button
+   
+   - Cohort Detail Page/Modal:
+     * Full cover image
+     * Overview stats (participants, duration, status)
+     * Highlights list with icons
+     * Success stories section:
+       - Participant photo
+       - Name & current position
+       - Testimonial quote
+       - LinkedIn profile link
+     * Photo gallery (grid with lightbox)
+     * Back button
+   
+   - Public access (no login required)
+   - Smooth animations & transitions
+
+3. AUTHENTICATION
    - User registration (email + password)
    - Login/Logout
    - Email verification (optional for MVP)
    - Protected routes
 
-3. MULTI-STEP REGISTRATION FORM (User)
+4. MULTI-STEP REGISTRATION FORM (User)
    - Step 1: Personal Data
      * Full name
      * Email
@@ -135,6 +163,43 @@ A full-stack web application for managing bootcamp enrollments with multi-step r
    - Status update (Under Review → Accepted/Rejected)
    - Acceptance letter (with download link)
    - Auto-send on status change
+
+7. ADMIN: MANAGE COHORTS (NEW)
+   - Cohorts list page at /admin/cohorts
+   - Table with columns:
+     * Cohort name
+     * Year
+     * Category
+     * Participants count
+     * Status
+     * Actions (Edit, Delete)
+   
+   - Create/Edit Cohort Form:
+     * Name (text)
+     * Description (textarea)
+     * Category (select: SMK/Mahasiswa/Umum)
+     * Year (number)
+     * Start date & end date (date pickers)
+     * Max participants (number)
+     * Total participants (number)
+     * Status (select: draft/active/completed/cancelled)
+     * Cover image upload (single file, max 5MB)
+     * Highlights (dynamic array input - add/remove items)
+     * Success Stories (repeater fields):
+       - Name
+       - Photo upload
+       - Title/Position
+       - Quote (textarea)
+       - LinkedIn URL
+     * Gallery (multiple image upload, max 10 photos)
+   
+   - Features:
+     * Filter by year/status
+     * Search by name
+     * Pagination
+     * Delete confirmation modal
+     * Image preview before upload
+     * Drag & drop gallery upload
 
 === TECH STACK ===
 
@@ -203,6 +268,36 @@ Table: settings
 - description (text)
 - updated_at (timestamp)
 
+Table: cohorts (NEW)
+- id (uuid, primary key)
+- name (varchar, not null)
+- description (text)
+- category (enum: 'SMK' | 'Mahasiswa' | 'Umum')
+- year (integer, not null)
+- start_date (date)
+- end_date (date)
+- max_participants (integer)
+- total_participants (integer, default 0)
+- status (enum: 'draft' | 'active' | 'completed' | 'cancelled', default 'draft')
+- image_url (text) - cover image for showcase
+- highlights (text array) - key achievements
+- success_stories (jsonb) - testimonials in JSON format
+- gallery_urls (text array) - photo gallery URLs
+- created_at (timestamp)
+- updated_at (timestamp)
+
+Index on: year (DESC), status
+
+Table: cohort_members
+- id (uuid, primary key)
+- cohort_id (uuid, foreign key → cohorts.id)
+- user_id (uuid, foreign key → users.id)
+- application_id (uuid, foreign key → applications.id)
+- enrollment_date (date, default current_date)
+- status (enum: 'enrolled' | 'dropped' | 'completed', default 'enrolled')
+- created_at (timestamp)
+- UNIQUE constraint on (cohort_id, user_id)
+
 === DESIGN REQUIREMENTS ===
 
 Colors:
@@ -227,7 +322,9 @@ Components:
 === PAGES & ROUTES ===
 
 Public:
-- / → Landing page
+- / → Landing page (with History section)
+- /cohorts → Bootcamp history page (optional, can be part of landing)
+- /cohorts/:id → Cohort detail page
 - /login → Login page
 - /register → Register page
 
@@ -237,7 +334,11 @@ Protected (User):
 
 Protected (Admin):
 - /admin/dashboard → Admin dashboard
+- /admin/applications → Applications list
 - /admin/applications/:id → Application detail
+- /admin/cohorts → Cohorts management (NEW)
+- /admin/cohorts/new → Create cohort (NEW)
+- /admin/cohorts/:id/edit → Edit cohort (NEW)
 
 API Routes:
 - /api/applications → CRUD operations
@@ -245,6 +346,10 @@ API Routes:
 - /api/applications/:id/reject → Reject application
 - /api/notifications/send → Send email
 - /api/upload → File upload handler
+- /api/cohorts → Get all cohorts (public, filterable by year/status) (NEW)
+- /api/cohorts/:id → Get cohort detail (public) (NEW)
+- /api/admin/cohorts → Create cohort (admin) (NEW)
+- /api/admin/cohorts/:id → Update/delete cohort (admin) (NEW)
 
 === FUNCTIONALITY REQUIREMENTS ===
 
@@ -503,8 +608,21 @@ Setelah generation, pastikan semua fitur ada:
 ### Landing Page
 - [ ] Hero section dengan CTA
 - [ ] Timeline section (SMK vs Mahasiswa)
+- [ ] **Bootcamp History section** (NEW)
+- [ ] **Year filter tabs** (NEW)
+- [ ] **Cohort cards grid** (NEW)
 - [ ] Responsive design
 - [ ] Navigation menu
+
+### Bootcamp History (NEW)
+- [ ] History section on landing page
+- [ ] Year filter (2025, 2024, 2023, All)
+- [ ] Cohort cards with cover image
+- [ ] View Details button
+- [ ] Cohort detail page/modal
+- [ ] Success stories display
+- [ ] Photo gallery with lightbox
+- [ ] Smooth transitions
 
 ### Authentication
 - [ ] Register page
@@ -534,6 +652,10 @@ Setelah generation, pastikan semua fitur ada:
 - [ ] Pagination
 - [ ] View detail modal
 - [ ] Approve/reject action
+- [ ] **Cohorts management page** (NEW)
+- [ ] **Create/edit cohort form** (NEW)
+- [ ] **Upload cover image & gallery** (NEW)
+- [ ] **Manage highlights & success stories** (NEW)
 
 ### Email Notifications
 - [ ] Welcome email

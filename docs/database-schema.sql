@@ -107,13 +107,25 @@ CREATE TABLE IF NOT EXISTS cohorts (
   name VARCHAR(255) NOT NULL,
   description TEXT,
   category VARCHAR(50) CHECK (category IN ('SMK', 'Mahasiswa', 'Umum')),
+  year INTEGER NOT NULL, -- Tahun pelaksanaan (e.g., 2025, 2026)
   start_date DATE,
   end_date DATE,
   max_participants INTEGER,
+  total_participants INTEGER DEFAULT 0, -- Total peserta yang enrolled
   status VARCHAR(50) DEFAULT 'draft' CHECK (status IN ('draft', 'active', 'completed', 'cancelled')),
+  
+  -- History/Showcase Data
+  image_url TEXT, -- Cover image untuk showcase
+  highlights TEXT[], -- Array of highlights (e.g., "100+ participants", "5 weeks intensive")
+  success_stories JSONB, -- Success stories in JSON format
+  gallery_urls TEXT[], -- Array of photo URLs
+  
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
   updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
+
+CREATE INDEX idx_cohorts_year ON cohorts(year DESC);
+CREATE INDEX idx_cohorts_status ON cohorts(status);
 
 -- =====================================================
 -- COHORT MEMBERS TABLE
