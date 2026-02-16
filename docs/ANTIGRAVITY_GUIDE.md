@@ -1,6 +1,16 @@
 # ANTIGRAVITY BUILD GUIDE
 
-Panduan lengkap untuk membangun Enrollment Management System menggunakan **Antigravity**.
+Panduan lengkap untuk membangun Enrollment Management System untuk **Himpunan Mahasiswa Informatika Fakultas Teknik Universitas Tanjungpura** menggunakan **Antigravity**.
+
+---
+
+## 🎓 TENTANG PROJECT INI
+
+**Organisasi:** Himpunan Mahasiswa Informatika (HIMAFORMATIKA)  
+**Fakultas:** Teknik  
+**Universitas:** Universitas Tanjungpura, Pontianak  
+**Tujuan:** Website pendaftaran Bootcamp/Pelatihan untuk mahasiswa & pelajar  
+**Bahasa:** **Bahasa Indonesia** (semua UI text, labels, hints)
 
 ---
 
@@ -28,16 +38,16 @@ Panduan lengkap untuk membangun Enrollment Management System menggunakan **Antig
 
 **Core Features:**
 - **Modern scrollytelling landing page** dengan image sequence hero
-- Multi-step registration form (3 steps)
+- Multi-step registration form (2 steps, no document upload)
 - User dashboard (track application status)
-- Admin dashboard (manage applications)
+- Admin dashboard (manage applications + cohorts)
 - Email notifications
-- File upload (documents)
+- Bootcamp history showcase
 
 **Tech Stack:**
-- Frontend: Next.js 15 + TypeScript + Tailwind CSS + shadcn/ui
+- Frontend: Next.js 15 + TypeScript + Tailwind CSS + shadcn/ui + Framer Motion + Lenis
 - Backend: Supabase (PostgreSQL + Auth + Storage)
-- Email: Resend / SendGrid
+- Email: Resend
 - Deployment: Vercel
 
 ---
@@ -51,16 +61,34 @@ Gunakan prompt ini di Antigravity untuk generate project:
 ### **PROMPT UNTUK ANTIGRAVITY**
 
 ```
-Build an Enrollment Management System for bootcamp/training programs with AWWWARDS-LEVEL MODERN SCROLLYTELLING DESIGN.
+Build an Enrollment Management System for Himpunan Mahasiswa Informatika (HIMAFORMATIKA) Fakultas Teknik Universitas Tanjungpura with AWWWARDS-LEVEL MODERN SCROLLYTELLING DESIGN.
+
+=== PROJECT CONTEXT ===
+**Organization:** Himpunan Mahasiswa Informatika (HIMAFORMATIKA)
+**Institution:** Fakultas Teknik, Universitas Tanjungpura, Pontianak
+**Purpose:** Bootcamp/Training Program Registration System
+**Language:** **BAHASA INDONESIA** (all UI text, labels, buttons, hints)
 
 === OVERVIEW ===
-A high-end, interactive full-stack web application featuring scroll-driven storytelling with image sequence animation, multi-step registration, admin workflow, and automated notifications.
+A high-end, interactive full-stack web application featuring scroll-driven storytelling with image sequence animation, multi-step registration (in Indonesian), admin workflow, and automated notifications.
 
 DESIGN INSPIRATION: Awwwards-winning websites with scroll-linked animations, seamless interactions, and premium aesthetics.
 
 === USER ROLES ===
 1. Applicants (Students/Public) - Experience the scrollytelling landing, register, track application
-2. Admins - Review, approve/reject applications, manage cohorts
+2. Admins (HIMAFORMATIKA Committee) - Review, approve/reject applications, manage cohorts
+
+=== LANGUAGE REQUIREMENT ===
+**ALL USER-FACING TEXT MUST BE IN BAHASA INDONESIA:**
+- Navigation menu (Beranda, Tentang, Program, Riwayat, Daftar, Kontak)
+- Form labels & hints (Nama Lengkap, Email, Nomor HP, Kategori, dll)
+- Buttons (Daftar Sekarang, Kirim, Lanjut, Kembali, Simpan Draft)
+- Status messages (Berhasil, Gagal, Menunggu Review, Diterima, Ditolak)
+- Email notifications (subject & body in Indonesian)
+- Dashboard labels (Status Pendaftaran, Riwayat, Profil)
+- Error messages (Email tidak valid, Field wajib diisi, dll)
+
+ONLY technical/code elements can be in English (variable names, comments, etc.)
 
 === DESIGN PHILOSOPHY ===
 
@@ -80,7 +108,7 @@ TYPOGRAPHY:
 
 COLORS:
 - Background: #0A0A0A (match image sequence background)
-- Primary: Blue (#1E40AF)
+- Primary: Blue (#1E40AF) - HIMAFORMATIKA brand color
 - Accent: Orange (#F97316)
 - Text: High contrast white/dark
 - Seamless blending for image edges
@@ -92,17 +120,17 @@ COLORS:
    THE CENTERPIECE:
    - Container: h-[400vh] (4x viewport height for long scroll duration)
    - Canvas element: sticky, top-0, h-screen, w-full, centered
-   - Image sequence: 100-200 frames (e.g., laptop rotating 360°, enrollment dashboard showcase)
+   - Image sequence: 100-200 frames (e.g., laptop rotating 360°, bootcamp dashboard showcase)
    - Frames path: /sequence/frame-001.jpg to frame-200.jpg
    - Scroll mapping: User scroll 0-100% → frame 0-200 (smooth interpolation)
    - Preload all images to prevent flickering
    - Canvas rendering: HTML5 Canvas for performance
    
-   TEXT OVERLAYS (fade in/out based on scroll %):
-   - 0% scroll: "Transform Your Future" + "Join Our Bootcamp 2026" (Center, large)
-   - 30% scroll: "Multi-Step Registration Made Simple" (Left aligned, fade in)
-   - 60% scroll: "Track Your Application Real-Time" (Right aligned, fade in)
-   - 90% scroll: "Apply Now" (Center, MAGNETIC BUTTON with spring animation)
+   TEXT OVERLAYS (fade in/out based on scroll %) - **BAHASA INDONESIA:**
+   - 0% scroll: "Wujudkan Masa Depanmu" + "Bergabung dengan Bootcamp HIMAFORMATIKA 2026" (Center, large)
+   - 30% scroll: "Pendaftaran Multi-Step yang Mudah" (Left aligned, fade in)
+   - 60% scroll: "Lacak Status Pendaftaran Real-Time" (Right aligned, fade in)
+   - 90% scroll: "Daftar Sekarang" (Center, MAGNETIC BUTTON with spring animation)
    
    TECHNICAL:
    - Use Motion (Framer Motion) useScroll + useTransform
@@ -112,70 +140,90 @@ COLORS:
 
 2. LANDING PAGE SECTIONS (Below Hero, wrapped in -mt-[100vh] relative z-10)
    
+   ALL TEXT IN **BAHASA INDONESIA**
+   
    ORDER:
    a) About Section - TEXT REVEAL ANIMATION
+      - Headline: "Tentang HIMAFORMATIKA Bootcamp"
+      - Subtext: "Program pelatihan intensif untuk mahasiswa & pelajar di Pontianak"
       - Split text into individual characters
       - Each character reveals (opacity 0 → 1) as user scrolls
       - Scroll-scrubbed animation (IntersectionObserver)
       - Large headline with subtext
    
    b) Program Features - BENTO GRID CARDS
+      - Section title: "Keunggulan Program"
       - Modern bento-style grid layout (varied sizes)
       - Cards with images, hover effects (scale + glow)
       - Parallax on scroll (slight movement)
       - Staggered fade-in animation
+      - Content: Mentor Berpengalaman, Materi Terkini, Sertifikat, Project-Based Learning
    
    c) Bootcamp History - COHORT SHOWCASE
-      - Year filter tabs (2025, 2024, 2023, All Years)
-      - Cohort cards with cover image, highlights, CTA
+      - Section title: "Riwayat Bootcamp"
+      - Year filter tabs: 2025, 2024, 2023, Semua Tahun
+      - Cohort cards with cover image, highlights, CTA "Lihat Detail"
       - Detail page: full image, stats, success stories, photo gallery (lightbox)
       - Public access, smooth transitions
    
    d) Stats Section - COUNT-UP NUMBERS
-      - Large numbers (1000+ Graduates, 500+ Companies, 95% Success Rate)
+      - Section title: "Pencapaian Kami"
+      - Large numbers: 
+        * 500+ Peserta
+        * 50+ Mentor
+        * 95% Kepuasan
       - Count-up animation from 0 to target when in view
       - Duration: 2s, easing: easeOut
-      - Icons + labels
+      - Icons + labels (in Indonesian)
    
    e) Testimonials - FULLSCREEN AUTOPLAY SLIDER
+      - Section title: "Testimoni Alumni"
       - Each slide: fullscreen background + centered quote
       - Participant photo, name, position, testimonial
       - Autoplay (5s interval), pause on hover
       - Progress dots, smooth crossfade transitions
    
    f) Timeline - REGISTRATION JOURNEY
+      - Section title: "Alur Pendaftaran"
       - Horizontal/vertical timeline (responsive)
-      - Steps: Registration → Review → Acceptance → Bootcamp
+      - Steps (in Indonesian): 
+        * Pendaftaran → Review → Diterima → Bootcamp Dimulai
       - Animated progress line
    
    g) CTA Section - ANIMATED GRADIENT BACKGROUND
+      - Headline: "Siap Bergabung?"
+      - Subtext: "Daftar sekarang dan wujudkan potensi terbaikmu!"
       - Animated mesh gradient (floating blurred blobs)
-      - Large headline + magnetic button
+      - Large headline + magnetic button "Daftar Sekarang"
       - Subtle infinite loop animation
    
-   h) Footer - CLEAN & MODERN
-      - Logo, links, social icons, copyright
+   h) Footer - CLEAN & MODERN (BAHASA INDONESIA)
+      - Organization: HIMAFORMATIKA Fakultas Teknik UNTAN
+      - Links: Beranda, Tentang, Program, Riwayat, Kontak
+      - Social icons: Instagram, Twitter/X, LinkedIn
+      - Contact: email@himaformatika.untan.ac.id, WhatsApp: +62xxx
+      - Copyright: © 2026 HIMAFORMATIKA UNTAN. All rights reserved.
       - Minimal design
 
-3. NAVBAR - AWWWARDS-LEVEL FULLSCREEN MENU
+3. NAVBAR - AWWWARDS-LEVEL FULLSCREEN MENU (BAHASA INDONESIA)
    
    DEFAULT STATE:
-   - Minimal: Logo (left) + Menu button (right)
+   - Minimal: Logo HIMAFORMATIKA (left) + Menu button (right)
    - Fixed position, backdrop blur on scroll
    
    MENU OPENED (fullscreen overlay):
    - Fullscreen dark backdrop with blur
-   - Large navigation links (6xl-8xl text):
-     * HOME
-     * ABOUT
+   - Large navigation links (6xl-8xl text) - **BAHASA INDONESIA:**
+     * BERANDA
+     * TENTANG
      * PROGRAM
-     * HISTORY
-     * APPLY
-     * CONTACT
+     * RIWAYAT
+     * DAFTAR
+     * KONTAK
    - Stagger reveal animation (top to bottom)
    - Hover effect: underline expand from center
-   - Bottom: Social media icons (LinkedIn, Instagram, Twitter)
-   - Bottom right: Contact (email, phone)
+   - Bottom: Social media icons (Instagram, Twitter/X, LinkedIn)
+   - Bottom right: Kontak (email, WhatsApp)
    - Close button (X) with smooth transition
 
 4. BOOTCAMP HISTORY (Detailed)
@@ -294,54 +342,106 @@ COLORS:
      * "Yang lain" text input appears when user selects that option
      * Responsive design (mobile-first)
 
-6. USER DASHBOARD
-   - Application status card (Draft / Submitted / Under Review / Accepted / Rejected)
-   - Progress timeline visual
-   - Download acceptance letter (if accepted)
-   - Edit application (only if Draft or Pending)
-   - Email notifications inbox
+6. USER DASHBOARD (BAHASA INDONESIA)
+   - Title: "Dashboard Saya"
+   - Application status card:
+     * Status labels (in Indonesian):
+       - Draft (Konsep)
+       - Submitted (Terkirim)
+       - Under Review (Dalam Review)
+       - Accepted (Diterima)
+       - Rejected (Ditolak)
+   - Progress timeline visual (Indonesian labels)
+   - Download acceptance letter button: "Unduh Surat Penerimaan" (if accepted)
+   - Edit application button: "Edit Pendaftaran" (only if Draft or Pending)
+   - Email notifications inbox: "Notifikasi"
 
-5. ADMIN DASHBOARD
-   - Table of all applications with columns:
-     * Applicant name
+5. ADMIN DASHBOARD (BAHASA INDONESIA)
+   - Title: "Dashboard Admin"
+   - Table of all applications with columns (in Indonesian):
+     * Nama Pelamar (Applicant name)
      * Email
-     * Category
+     * Kategori (Category)
+     * Universitas (University) - if applicable
+     * Jurusan (Major)
      * Status
-     * Submitted date
-     * Actions
+     * Tanggal Daftar (Submitted date)
+     * Aksi (Actions)
    
    - Features:
-     * Filter by status (All / Submitted / Under Review / Accepted / Rejected)
-     * Filter by category (All / SMK / Mahasiswa / Umum)
-     * Search by name or email
-     * Pagination (20 per page)
-     * View detail modal
-     * Approve/Reject action with notes field
+     * Filter by status: Semua / Terkirim / Dalam Review / Diterima / Ditolak
+     * Filter by category: Semua / Pelajar (SMA/SMK) / Mahasiswa Aktif / Umum
+     * Search: Cari berdasarkan nama atau email
+     * Pagination (20 per halaman) - labels: Sebelumnya, Selanjutnya
+     * View detail modal: Lihat Detail
+     * Approve/Reject action: Terima / Tolak (with notes field: Catatan)
      * Bulk select & action
    
    - Detail View Modal:
-     * All applicant data
-     * Document preview/download
-     * Reviewer notes input
-     * Approve/Reject buttons
-     * Email notification trigger
+     * Title: "Detail Pendaftaran"
+     * All applicant data (labels in Indonesian)
+     * Reviewer notes input: "Catatan Reviewer"
+     * Approve button: "Terima Pendaftaran"
+     * Reject button: "Tolak Pendaftaran"
+     * Email notification trigger automatically
 
-6. EMAIL NOTIFICATIONS
-   - Welcome email (after registration)
-   - Application submitted confirmation
-   - Status update (Under Review → Accepted/Rejected)
-   - Acceptance letter (with download link)
+6. EMAIL NOTIFICATIONS (BAHASA INDONESIA)
+   - Welcome email (after registration):
+     * Subject: "Selamat Datang di HIMAFORMATIKA Bootcamp!"
+     * Body: Greeting + confirmation + next steps (in Indonesian)
+   
+   - Application submitted confirmation:
+     * Subject: "Pendaftaran Berhasil Dikirim"
+     * Body: Thank you message + review timeline
+   
+   - Status update emails:
+     * Under Review - Subject: "Pendaftaran Sedang Direview"
+     * Accepted - Subject: "Selamat! Kamu Diterima di Bootcamp HIMAFORMATIKA"
+     * Rejected - Subject: "Informasi Status Pendaftaran"
+   
+   - Acceptance letter (with download link):
+     * Subject: "Surat Penerimaan Bootcamp HIMAFORMATIKA"
+   
    - Auto-send on status change
+   - HTML email templates (professional, branded with HIMAFORMATIKA colors)
 
-7. ADMIN: MANAGE COHORTS (NEW)
+7. ADMIN: MANAGE COHORTS (BAHASA INDONESIA)
    - Cohorts list page at /admin/cohorts
-   - Table with columns:
-     * Cohort name
-     * Year
-     * Category
-     * Participants count
+   - Title: "Kelola Cohort"
+   - Table with columns (in Indonesian):
+     * Nama Cohort (Cohort name)
+     * Tahun (Year)
+     * Kategori (Category)
+     * Jumlah Peserta (Participants count)
      * Status
-     * Actions (Edit, Delete)
+     * Aksi (Actions: Edit, Hapus)
+   
+   - Create/Edit Cohort Form (labels in Indonesian):
+     * Nama* (Name - text)
+     * Deskripsi (Description - textarea)
+     * Kategori* (Category - select: Pelajar (SMA/SMK)/Mahasiswa Aktif/Umum)
+     * Tahun* (Year - number)
+     * Tanggal Mulai & Tanggal Selesai (Start & end date - date pickers)
+     * Maks. Peserta (Max participants - number)
+     * Total Peserta (Total participants - number)
+     * Status* (select: draft/active/completed/cancelled)
+     * Upload Cover Image (single file, max 5MB)
+     * Highlights (dynamic array input - add/remove items)
+     * Success Stories (repeater fields):
+       - Nama
+       - Upload Foto
+       - Jabatan/Posisi
+       - Testimoni (textarea)
+       - Link LinkedIn
+     * Galeri (multiple image upload, max 10 photos)
+   
+   - Features (Indonesian labels):
+     * Filter berdasarkan tahun/status
+     * Cari berdasarkan nama
+     * Pagination
+     * Konfirmasi hapus modal
+     * Preview gambar sebelum upload
+     * Drag & drop galeri upload
    
    - Create/Edit Cohort Form:
      * Name (text)
@@ -516,37 +616,37 @@ Components:
 - Card-based layouts with hover effects
 - Dark theme with vibrant accents
 
-=== PAGES & ROUTES ===
+=== PAGES & ROUTES (BAHASA INDONESIA URLs & Page Titles) ===
 
 Public:
-- / → Landing page (with History section)
-- /cohorts → Bootcamp history page (optional, can be part of landing)
-- /cohorts/:id → Cohort detail page
-- /login → Login page
-- /register → Register page
+- / → Landing page (title: "HIMAFORMATIKA Bootcamp - Beranda")
+- /riwayat → Bootcamp history page (title: "Riwayat Bootcamp")
+- /riwayat/:id → Cohort detail page (title: "Detail Cohort")
+- /masuk → Login page (title: "Masuk")
+- /daftar-akun → Register account page (title: "Daftar Akun")
 
 Protected (User):
-- /dashboard → User dashboard
-- /apply → Multi-step application form
+- /dashboard → User dashboard (title: "Dashboard Saya")
+- /daftar → Multi-step application form (title: "Formulir Pendaftaran")
 
 Protected (Admin):
-- /admin/dashboard → Admin dashboard
-- /admin/applications → Applications list
-- /admin/applications/:id → Application detail
-- /admin/cohorts → Cohorts management (NEW)
-- /admin/cohorts/new → Create cohort (NEW)
-- /admin/cohorts/:id/edit → Edit cohort (NEW)
+- /admin/dashboard → Admin dashboard (title: "Dashboard Admin")
+- /admin/pendaftaran → Applications list (title: "Kelola Pendaftaran")
+- /admin/pendaftaran/:id → Application detail (title: "Detail Pendaftaran")
+- /admin/cohort → Cohorts management (title: "Kelola Cohort")
+- /admin/cohort/baru → Create cohort (title: "Buat Cohort Baru")
+- /admin/cohort/:id/edit → Edit cohort (title: "Edit Cohort")
 
-API Routes:
+API Routes (internal, no translation needed):
 - /api/applications → CRUD operations
 - /api/applications/:id/approve → Approve application
 - /api/applications/:id/reject → Reject application
 - /api/notifications/send → Send email
-- /api/upload → File upload handler
-- /api/cohorts → Get all cohorts (public, filterable by year/status) (NEW)
-- /api/cohorts/:id → Get cohort detail (public) (NEW)
-- /api/admin/cohorts → Create cohort (admin) (NEW)
-- /api/admin/cohorts/:id → Update/delete cohort (admin) (NEW)
+- /api/upload → File upload handler (for cohort images)
+- /api/cohorts → Get all cohorts (public, filterable by year/status)
+- /api/cohorts/:id → Get cohort detail (public)
+- /api/admin/cohorts → Create cohort (admin)
+- /api/admin/cohorts/:id → Update/delete cohort (admin)
 
 === FUNCTIONALITY REQUIREMENTS ===
 

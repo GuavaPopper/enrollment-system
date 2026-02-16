@@ -1,34 +1,52 @@
-# Enrollment Management System
+# Enrollment Management System - HIMAFORMATIKA Bootcamp
 
-Website pendaftaran online untuk bootcamp/program training, terinspirasi dari [DBS Foundation Coding Camp](https://www.dbs.com/spark/index/id_id/site/codingcamp/index.html).
+**Website Pendaftaran Bootcamp HIMAFORMATIKA**  
+Himpunan Mahasiswa Informatika - Fakultas Teknik - Universitas Tanjungpura
 
----
-
-## 🎯 Ringkasan
-
-**Enrollment Management System** adalah platform web untuk mengelola pendaftaran peserta bootcamp/training dengan fitur:
-- Multi-step registration form
-- Document management (upload & download)
-- Admin approval workflow
-- Email notifications
-- Progress tracking
+Website pendaftaran online untuk bootcamp/program pelatihan **HIMAFORMATIKA** dengan desain modern Awwwards-level scrollytelling.
 
 ---
 
-## ✨ Fitur Utama
+## 🎓 Tentang Project
 
-### 👤 User Side
-- **Landing Page** - Modern scrollytelling dengan image sequence animation
-- **Multi-Step Registration** - Form pendaftaran bertahap (3 steps)
-- **User Dashboard** - Track status aplikasi, progress indicator
-- **Document Upload** - Upload KTM/Kartu Pelajar (opsional, untuk verifikasi)
-- **Email Notifications** - Konfirmasi pendaftaran, status updates
+Platform web untuk mengelola pendaftaran peserta bootcamp **Himpunan Mahasiswa Informatika (HIMAFORMATIKA)** Fakultas Teknik Universitas Tanjungpura, Pontianak.
 
-### 👨‍💼 Admin Side
-- **Admin Dashboard** - View & manage semua aplikasi
-- **Review System** - Approve/reject dengan notes
-- **Filter & Search** - Filter by status/category, search by name/email
-- **Email Triggers** - Auto-send notification saat status berubah
+**Fitur Utama:**
+- Modern scrollytelling landing page dengan image sequence animation
+- Multi-step registration form (2 langkah, tanpa upload dokumen)
+- User dashboard untuk tracking status pendaftaran
+- Admin panel untuk kelola pendaftaran & cohort
+- Email notifications otomatis (full Bahasa Indonesia)
+- Riwayat bootcamp showcase
+
+**Bahasa:** Full Bahasa Indonesia (semua UI, labels, email)
+
+---
+
+## ✨ Fitur Lengkap
+
+### 👤 User Side (Peserta)
+- **Landing Page** - Awwwards-level scrollytelling dengan image sequence animation (100-200 frames)
+- **Formulir Pendaftaran** - Multi-step form (2 langkah):
+  * Step 1: Data Pribadi (Nama, Email, HP, Kategori, Universitas, Jurusan, Semester)
+  * Step 2: Review & Konfirmasi
+- **Dashboard** - Track status: Konsep, Terkirim, Dalam Review, Diterima, Ditolak
+- **Notifikasi Email** - Konfirmasi & update status (Bahasa Indonesia)
+
+### 👨‍💼 Admin Side (Panitia HIMAFORMATIKA)
+- **Dashboard Admin** - Kelola semua pendaftaran
+- **Review System** - Terima/Tolak dengan catatan reviewer
+- **Kelola Cohort** - CRUD cohort: cover image, highlights, success stories, gallery
+- **Filter & Search** - Filter by status/kategori, search by nama/email
+- **Email Triggers** - Auto-send saat status berubah
+
+### 🎨 Design Highlights
+- **Awwwards-level** scrollytelling hero
+- **Smooth scroll** (Lenis library)
+- **Framer Motion** animations (text reveal, magnetic button, count-up)
+- **Fullscreen navbar** menu
+- **Dark theme** + Blue accent (HIMAFORMATIKA brand)
+- **Typography:** Outfit font (Google Fonts)
 
 ---
 
@@ -37,11 +55,13 @@ Website pendaftaran online untuk bootcamp/program training, terinspirasi dari [D
 ### Frontend
 - **Next.js 15** (App Router) + TypeScript
 - **Tailwind CSS** + **shadcn/ui**
+- **Framer Motion** + **Lenis** (smooth scroll)
 - **React Hook Form** + **Zod** (validation)
+- **Outfit** font (Google Fonts)
 
 ### Backend & Services
-- **Supabase** (Database + Auth + Storage)
-- **Resend / SendGrid** (Email service)
+- **Supabase** (PostgreSQL + Auth + Storage)
+- **Resend** (Email service - Indonesian templates)
 - **Vercel** (Deployment)
 
 ---
