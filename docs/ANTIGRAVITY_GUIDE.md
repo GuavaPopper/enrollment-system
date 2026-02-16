@@ -212,32 +212,89 @@ COLORS:
    - Protected routes
 
 5. MULTI-STEP REGISTRATION FORM (User)
+   
+   TOTAL STEPS: 2 (bukan 3 lagi, karena tidak ada document upload)
+   
    - Step 1: Personal Data
-     * Full name
-     * Email
-     * Phone number
-     * Category (SMK / Mahasiswa / Umum)
-     * Institution name (Sekolah/Universitas)
-     * Major/Field of study (Jurusan)
-     * Graduation year (Tahun lulus)
+     
+     a) Full name* (text input)
+        Placeholder: "Nama lengkap kamu"
+     
+     b) Email* (email input)
+        Placeholder: "email@example.com"
+        Validation: email format
+     
+     c) Phone number* (text input)
+        Placeholder: "08xxxxxxxxxx"
+        Validation: Indonesian phone format
+     
+     d) Category* (select dropdown)
+        Label: "Kategori"
+        Options:
+        - Pelajar (SMA atau SMK)
+        - Mahasiswa Aktif
+        - Umum
+     
+     e) Asal Universitas* (select dropdown - ONLY IF category = "Mahasiswa Aktif")
+        Label: "Asal Universitas"
+        Hint: "Dari universitas atau institusi mana kamu berasal? (Jika tidak berasal dari Universitas yang ada di list, bisa isi nama institusi kamu)"
+        Options:
+        - Universitas Tanjungpura
+        - Politeknik Negeri Pontianak
+        - Universitas Widya Dharma
+        - Universitas Muhammadiyah Pontianak
+        - Universitas Bina Sarana Informatika
+        - STMIK Pontianak
+        - Universitas Panca Bhakti
+        - Yang lain: [text input untuk custom]
+        
+        NOTE: Field ini conditional - hanya muncul jika user pilih "Mahasiswa Aktif"
+     
+     f) Program Studi/Jurusan* (select dropdown with "Yang lain" option)
+        Label: "Program Studi/Jurusan"
+        Hint: "Apa program studi atau jurusan kamu? Kami ingin tahu bidang keilmuan kamu saat ini (Jika kamu individu umum, silakan isi \"-\")"
+        Options:
+        - Informatika
+        - Ilmu Komputer
+        - Sistem Informasi
+        - Rekayasa Sistem Komputer
+        - Statistika
+        - Yang lain: [text input untuk custom]
+        - (Jika category = "Umum", auto-fill dengan "-" atau biarkan user isi bebas)
+     
+     g) Semester* (select dropdown)
+        Label: "Semester"
+        Hint: "Di semester berapa kamu sekarang, atau kapan kamu lulus? Ini penting untuk memahami tahap studi kamu (Jika kamu individu umum, silakan isi \"-\")"
+        Options:
+        - Semester 1
+        - Semester 3
+        - Semester 5
+        - Semester 7
+        - Semester 8+
+        - Yang lain: [text input untuk custom]
+        - (Jika category = "Umum", auto-fill dengan "-" atau biarkan user isi bebas)
    
-   - Step 2: Document Upload (OPTIONAL - untuk verifikasi saja)
-     * Student card (KTM/Kartu Pelajar) - JPG/PNG/PDF, max 2MB
-     * NOTE: Tidak ada surat rekomendasi (ini bootcamp, bukan beasiswa)
-   
-   - Step 3: Review & Confirmation
-     * Summary of all data entered
-     * Terms & conditions checkbox
-     * Submit button
+   - Step 2: Review & Confirmation
+     * Summary of ALL data entered in Step 1
+     * Display in clean card layout (label: value pairs)
+     * Edit button → go back to Step 1
+     * Terms & conditions checkbox*
+       "Saya setuju dengan syarat dan ketentuan yang berlaku"
+     * Submit button (disabled until T&C checked)
    
    - Features:
-     * Progress indicator (stepper: 1/3, 2/3, 3/3)
-     * Save draft functionality (auto-save on field change)
-     * Form validation (Zod schema)
-     * File upload preview (thumbnail before upload)
-     * Smooth step transitions
+     * Progress indicator (stepper: 1/2, 2/2)
+     * Save draft functionality (auto-save on field change to localStorage)
+     * Form validation (Zod schema):
+       - All required fields must be filled
+       - Email format validation
+       - Phone number format validation (Indonesia)
+       - Conditional validation (university field only for Mahasiswa Aktif)
+     * Smooth step transitions (slide left/right animation)
+     * "Yang lain" text input appears when user selects that option
+     * Responsive design (mobile-first)
 
-4. USER DASHBOARD
+6. USER DASHBOARD
    - Application status card (Draft / Submitted / Under Review / Accepted / Rejected)
    - Progress timeline visual
    - Download acceptance letter (if accepted)
@@ -348,7 +405,7 @@ Table: users
 - email (varchar, unique)
 - name (varchar)
 - phone (varchar)
-- category (enum: 'SMK' | 'Mahasiswa' | 'Umum')
+- category (enum: 'Pelajar (SMA atau SMK)' | 'Mahasiswa Aktif' | 'Umum')
 - role (enum: 'applicant' | 'admin', default 'applicant')
 - email_verified (boolean, default false)
 - created_at (timestamp)
@@ -359,10 +416,9 @@ Table: applications
 - user_id (uuid, foreign key → users.id)
 - status (enum: 'draft' | 'submitted' | 'under_review' | 'accepted' | 'rejected', default 'draft')
 - step_completed (integer, default 0)
-- institution_name (varchar) - Nama sekolah/universitas
-- major (varchar) - Jurusan
-- graduation_year (integer) - Tahun lulus
-- student_card_url (text, nullable) - KTM/Kartu Pelajar (OPTIONAL)
+- university (varchar, nullable) - Nama universitas (hanya untuk Mahasiswa Aktif)
+- major (varchar) - Program Studi/Jurusan
+- semester (varchar) - Semester (e.g., "Semester 1", "Semester 8+", "-")
 - reviewer_notes (text, nullable) - Catatan reviewer
 - reviewed_by (uuid, foreign key → users.id, nullable)
 - reviewed_at (timestamp, nullable)
@@ -370,7 +426,11 @@ Table: applications
 - created_at (timestamp)
 - updated_at (timestamp)
 
-NOTE: Tidak ada recommendation_letter_url karena ini bootcamp, bukan beasiswa.
+NOTE: 
+- Tidak ada student_card_url (tidak perlu upload dokumen)
+- Tidak ada institution_name (diganti dengan university field yang conditional)
+- Tidak ada graduation_year (diganti dengan semester)
+- Field university hanya diisi jika category = "Mahasiswa Aktif"
 
 Table: notifications
 - id (uuid, primary key)

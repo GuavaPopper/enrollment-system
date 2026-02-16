@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS users (
   email VARCHAR(255) UNIQUE NOT NULL,
   name VARCHAR(255) NOT NULL,
   phone VARCHAR(50),
-  category VARCHAR(50) CHECK (category IN ('SMK', 'Mahasiswa', 'Umum')),
+  category VARCHAR(50) CHECK (category IN ('Pelajar (SMA atau SMK)', 'Mahasiswa Aktif', 'Umum')),
   role VARCHAR(20) DEFAULT 'applicant' CHECK (role IN ('applicant', 'admin', 'reviewer')),
   email_verified BOOLEAN DEFAULT FALSE,
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
@@ -38,17 +38,15 @@ CREATE TABLE IF NOT EXISTS applications (
   -- Personal Data (JSON untuk fleksibilitas)
   personal_data JSONB,
   
-  -- School/University Info
-  institution_name VARCHAR(255),
-  institution_address TEXT,
-  major VARCHAR(255),
-  graduation_year INTEGER,
+  -- University Info (hanya untuk Mahasiswa Aktif)
+  university VARCHAR(255), -- Nama universitas (Untan, Polnep, dll)
   
-  -- Documents (OPTIONAL - untuk verifikasi)
-  student_card_url TEXT, -- KTM/Kartu Pelajar (opsional)
+  -- Academic Info
+  major VARCHAR(255), -- Program Studi/Jurusan (Informatika, Ilmu Komputer, dll)
+  semester VARCHAR(100), -- Semester (Semester 1, Semester 8+, "-", dll)
   
-  -- NOTE: Tidak ada recommendation_letter dan commitment_letter
-  -- Karena ini bootcamp biasa, bukan beasiswa
+  -- NOTE: Tidak ada document upload (student_card_url dihapus)
+  -- NOTE: Tidak ada institution_name & graduation_year (diganti university & semester)
   
   -- Admin Notes
   reviewer_notes TEXT,
@@ -65,24 +63,8 @@ CREATE TABLE IF NOT EXISTS applications (
 CREATE INDEX idx_applications_user_id ON applications(user_id);
 CREATE INDEX idx_applications_status ON applications(status);
 CREATE INDEX idx_applications_created_at ON applications(created_at DESC);
-
--- =====================================================
--- DOCUMENTS TABLE (untuk tracking upload)
--- =====================================================
-CREATE TABLE IF NOT EXISTS documents (
-  id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
-  application_id UUID REFERENCES applications(id) ON DELETE CASCADE,
-  type VARCHAR(100) NOT NULL, -- 'student_card' (hanya ini yang ada)
-  file_name VARCHAR(255) NOT NULL,
-  file_url TEXT NOT NULL,
-  file_size INTEGER, -- in bytes
-  mime_type VARCHAR(100),
-  uploaded_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
-);
-
-COMMENT ON TABLE documents IS 'Tracking document uploads - hanya student card untuk verifikasi (opsional)';
-
-CREATE INDEX idx_documents_application_id ON documents(application_id);
+CREATE INDEX idx_applications_university ON applications(university);
+CREATE INDEX idx_applications_major ON applications(major);
 
 -- =====================================================
 -- NOTIFICATIONS TABLE
@@ -109,7 +91,7 @@ CREATE TABLE IF NOT EXISTS cohorts (
   id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
   name VARCHAR(255) NOT NULL,
   description TEXT,
-  category VARCHAR(50) CHECK (category IN ('SMK', 'Mahasiswa', 'Umum')),
+  category VARCHAR(50) CHECK (category IN ('Pelajar (SMA atau SMK)', 'Mahasiswa Aktif', 'Umum')),
   year INTEGER NOT NULL, -- Tahun pelaksanaan (e.g., 2025, 2026)
   start_date DATE,
   end_date DATE,
@@ -266,8 +248,7 @@ GROUP BY c.id, c.name, c.max_participants;
 -- =====================================================
 
 COMMENT ON TABLE users IS 'Stores user data for applicants and admins';
-COMMENT ON TABLE applications IS 'Stores application submissions';
-COMMENT ON TABLE documents IS 'Tracks uploaded documents';
+COMMENT ON TABLE applications IS 'Stores application submissions - simplified (no documents upload)';
 COMMENT ON TABLE notifications IS 'Email notification log';
 COMMENT ON TABLE cohorts IS 'Training cohorts/batches';
 COMMENT ON TABLE cohort_members IS 'Participants in each cohort';
