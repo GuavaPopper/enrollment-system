@@ -18,10 +18,10 @@ Website pendaftaran online untuk bootcamp/program training, terinspirasi dari [D
 ## ✨ Fitur Utama
 
 ### 👤 User Side
-- **Landing Page** - Hero section, timeline pendaftaran, info program
+- **Landing Page** - Modern scrollytelling dengan image sequence animation
 - **Multi-Step Registration** - Form pendaftaran bertahap (3 steps)
 - **User Dashboard** - Track status aplikasi, progress indicator
-- **Document Upload** - Upload KTM/Kartu Pelajar, Surat Rekomendasi
+- **Document Upload** - Upload KTM/Kartu Pelajar (opsional, untuk verifikasi)
 - **Email Notifications** - Konfirmasi pendaftaran, status updates
 
 ### 👨‍💼 Admin Side

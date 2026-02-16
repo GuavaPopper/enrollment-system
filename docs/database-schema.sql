@@ -44,10 +44,11 @@ CREATE TABLE IF NOT EXISTS applications (
   major VARCHAR(255),
   graduation_year INTEGER,
   
-  -- Documents
-  student_card_url TEXT,
-  recommendation_letter_url TEXT,
-  commitment_letter_url TEXT,
+  -- Documents (OPTIONAL - untuk verifikasi)
+  student_card_url TEXT, -- KTM/Kartu Pelajar (opsional)
+  
+  -- NOTE: Tidak ada recommendation_letter dan commitment_letter
+  -- Karena ini bootcamp biasa, bukan beasiswa
   
   -- Admin Notes
   reviewer_notes TEXT,
@@ -71,13 +72,15 @@ CREATE INDEX idx_applications_created_at ON applications(created_at DESC);
 CREATE TABLE IF NOT EXISTS documents (
   id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
   application_id UUID REFERENCES applications(id) ON DELETE CASCADE,
-  type VARCHAR(100) NOT NULL, -- 'student_card', 'recommendation_letter', 'commitment_letter'
+  type VARCHAR(100) NOT NULL, -- 'student_card' (hanya ini yang ada)
   file_name VARCHAR(255) NOT NULL,
   file_url TEXT NOT NULL,
   file_size INTEGER, -- in bytes
   mime_type VARCHAR(100),
   uploaded_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
+
+COMMENT ON TABLE documents IS 'Tracking document uploads - hanya student card untuk verifikasi (opsional)';
 
 CREATE INDEX idx_documents_application_id ON documents(application_id);
 

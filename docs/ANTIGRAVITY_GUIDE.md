@@ -217,24 +217,25 @@ COLORS:
      * Email
      * Phone number
      * Category (SMK / Mahasiswa / Umum)
-     * Institution name
-     * Major/Field of study
-     * Graduation year
+     * Institution name (Sekolah/Universitas)
+     * Major/Field of study (Jurusan)
+     * Graduation year (Tahun lulus)
    
-   - Step 2: Document Upload
-     * Student card (KTM/Kartu Pelajar) - JPG/PNG/PDF, max 5MB
-     * Recommendation letter - PDF, max 5MB
+   - Step 2: Document Upload (OPTIONAL - untuk verifikasi saja)
+     * Student card (KTM/Kartu Pelajar) - JPG/PNG/PDF, max 2MB
+     * NOTE: Tidak ada surat rekomendasi (ini bootcamp, bukan beasiswa)
    
    - Step 3: Review & Confirmation
-     * Summary of all data
+     * Summary of all data entered
      * Terms & conditions checkbox
      * Submit button
    
    - Features:
-     * Progress indicator (stepper)
-     * Save draft functionality
-     * Form validation (Zod)
-     * File upload preview
+     * Progress indicator (stepper: 1/3, 2/3, 3/3)
+     * Save draft functionality (auto-save on field change)
+     * Form validation (Zod schema)
+     * File upload preview (thumbnail before upload)
+     * Smooth step transitions
 
 4. USER DASHBOARD
    - Application status card (Draft / Submitted / Under Review / Accepted / Rejected)
@@ -358,17 +359,18 @@ Table: applications
 - user_id (uuid, foreign key → users.id)
 - status (enum: 'draft' | 'submitted' | 'under_review' | 'accepted' | 'rejected', default 'draft')
 - step_completed (integer, default 0)
-- institution_name (varchar)
-- major (varchar)
-- graduation_year (integer)
-- student_card_url (text)
-- recommendation_letter_url (text)
-- reviewer_notes (text, nullable)
+- institution_name (varchar) - Nama sekolah/universitas
+- major (varchar) - Jurusan
+- graduation_year (integer) - Tahun lulus
+- student_card_url (text, nullable) - KTM/Kartu Pelajar (OPTIONAL)
+- reviewer_notes (text, nullable) - Catatan reviewer
 - reviewed_by (uuid, foreign key → users.id, nullable)
 - reviewed_at (timestamp, nullable)
 - submitted_at (timestamp, nullable)
 - created_at (timestamp)
 - updated_at (timestamp)
+
+NOTE: Tidak ada recommendation_letter_url karena ini bootcamp, bukan beasiswa.
 
 Table: notifications
 - id (uuid, primary key)
