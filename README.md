@@ -2,50 +2,57 @@
 
 Website pendaftaran online untuk bootcamp/program training, terinspirasi dari [DBS Foundation Coding Camp](https://www.dbs.com/spark/index/id_id/site/codingcamp/index.html).
 
-## 🎯 Fitur Utama
+---
 
-### User Side
+## 🎯 Ringkasan
+
+**Enrollment Management System** adalah platform web untuk mengelola pendaftaran peserta bootcamp/training dengan fitur:
+- Multi-step registration form
+- Document management (upload & download)
+- Admin approval workflow
+- Email notifications
+- Progress tracking
+
+---
+
+## ✨ Fitur Utama
+
+### 👤 User Side
 - **Landing Page** - Hero section, timeline pendaftaran, info program
-- **Multi-Step Registration** - Form pendaftaran bertahap (3-4 steps)
+- **Multi-Step Registration** - Form pendaftaran bertahap (3 steps)
 - **User Dashboard** - Track status aplikasi, progress indicator
-- **Document Management** - Upload & download dokumen
-- **Email Notifications** - Konfirmasi, status updates, acceptance letter
+- **Document Upload** - Upload KTM/Kartu Pelajar, Surat Rekomendasi
+- **Email Notifications** - Konfirmasi pendaftaran, status updates
 
-### Admin Side
-- **Admin Dashboard** - Manage semua aplikasi
-- **Review System** - Approve/reject aplikasi dengan notes
-- **Applicant Management** - Filter, search, export data
-- **Email Triggers** - Send notification otomatis
-- **Analytics** - Basic statistics & reports
+### 👨‍💼 Admin Side
+- **Admin Dashboard** - View & manage semua aplikasi
+- **Review System** - Approve/reject dengan notes
+- **Filter & Search** - Filter by status/category, search by name/email
+- **Email Triggers** - Auto-send notification saat status berubah
+
+---
 
 ## 🛠️ Tech Stack
 
 ### Frontend
-- **Framework:** Next.js 15 (App Router)
-- **Language:** TypeScript
-- **Styling:** Tailwind CSS
-- **UI Components:** shadcn/ui
-- **Form Handling:** React Hook Form + Zod
-- **State Management:** React Context / Zustand
+- **Next.js 15** (App Router) + TypeScript
+- **Tailwind CSS** + **shadcn/ui**
+- **React Hook Form** + **Zod** (validation)
 
-### Backend
-- **Database:** Supabase (PostgreSQL)
-- **Authentication:** Supabase Auth
-- **Storage:** Supabase Storage
-- **API:** Next.js API Routes / Supabase Edge Functions
+### Backend & Services
+- **Supabase** (Database + Auth + Storage)
+- **Resend / SendGrid** (Email service)
+- **Vercel** (Deployment)
 
-### Services
-- **Email:** Resend / SendGrid
-- **Deployment:** Vercel
-- **Domain:** TBD
+---
 
 ## 📁 Project Structure
 
 ```
 enrollment-system/
-├── app/                    # Next.js 15 App Router
-│   ├── (auth)/            # Auth routes (login, register)
-│   ├── (user)/            # User dashboard
+├── app/                    # Next.js App Router
+│   ├── (auth)/            # Login, Register
+│   ├── (user)/            # User dashboard, application form
 │   ├── (admin)/           # Admin dashboard
 │   ├── api/               # API routes
 │   └── page.tsx           # Landing page
@@ -53,130 +60,167 @@ enrollment-system/
 │   ├── ui/               # shadcn/ui components
 │   ├── forms/            # Form components
 │   └── layouts/          # Layout components
-├── lib/                  # Utilities & configs
+├── lib/                  # Utilities
 │   ├── supabase/         # Supabase client & queries
 │   ├── validations/      # Zod schemas
-│   └── utils.ts          # Helper functions
+│   └── utils.ts
 ├── types/                # TypeScript types
-├── public/               # Static assets
 ├── docs/                 # Documentation
-│   └── ANALISIS_CODING_CAMP_WEBSITE.md
-├── .env.local.example    # Environment variables example
-├── package.json
+│   ├── ANALISIS_CODING_CAMP_WEBSITE.md
+│   └── database-schema.sql
 └── README.md
 ```
+
+---
 
 ## 🚀 Quick Start
 
 ### Prerequisites
-- Node.js 18+ dan npm/pnpm/yarn
-- Akun Supabase (gratis)
-- Akun Vercel (gratis) - untuk deployment
+- Node.js 18+
+- Supabase account (gratis)
+- Resend/SendGrid account (gratis)
 
 ### Installation
 
-1. **Clone repository**
 ```bash
+# Clone repository
 git clone https://github.com/GuavaPopper/enrollment-system.git
 cd enrollment-system
-```
 
-2. **Install dependencies**
-```bash
+# Install dependencies
 npm install
-# atau
-pnpm install
-# atau
-yarn install
-```
 
-3. **Setup environment variables**
-```bash
+# Setup environment variables
 cp .env.local.example .env.local
+# Edit .env.local dengan Supabase & email service credentials
 ```
 
-Edit `.env.local` dengan credentials Supabase kamu:
-```env
-NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
-SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
+### Database Setup
 
-RESEND_API_KEY=your_resend_api_key
-NEXT_PUBLIC_APP_URL=http://localhost:3000
-```
+1. Buat project di [Supabase](https://supabase.com)
+2. Run migration di Supabase SQL Editor:
+   - Copy isi `docs/database-schema.sql`
+   - Paste & execute di SQL Editor
+3. Copy credentials ke `.env.local`
 
-4. **Setup database**
-```bash
-# Jalankan migration di Supabase SQL Editor
-# File: docs/database-schema.sql
-```
+### Run Development
 
-5. **Run development server**
 ```bash
 npm run dev
 ```
 
-Buka [http://localhost:3000](http://localhost:3000) di browser.
+Buka [http://localhost:3000](http://localhost:3000)
+
+---
 
 ## 📊 Database Schema
-
-Lihat detail di `docs/database-schema.sql`
 
 **Main Tables:**
 - `users` - User data (applicants & admins)
 - `applications` - Application records
 - `documents` - Uploaded documents
-- `notifications` - Email notifications log
+- `notifications` - Email notification log
 - `cohorts` - Cohort/batch management
 - `settings` - System configuration
 
+Detail lengkap: `docs/database-schema.sql`
+
+---
+
 ## 🎨 Design System
 
-- **Primary Color:** Blue (#1E40AF)
-- **Accent Color:** Orange (#F97316)
-- **Font:** Inter (sans-serif)
-- **UI Library:** shadcn/ui (Radix UI + Tailwind)
+- **Primary:** Blue (#1E40AF)
+- **Accent:** Orange (#F97316)
+- **Font:** Inter
+- **UI Library:** shadcn/ui
+
+---
 
 ## 📝 Development Status
 
-### Phase 1: MVP (Current)
+### ✅ Phase 1: MVP (Current)
 - [ ] Landing page
-- [ ] User authentication (register/login)
+- [ ] User authentication
 - [ ] Multi-step registration form
 - [ ] User dashboard
-- [ ] Admin dashboard (basic)
+- [ ] Admin dashboard
 - [ ] Email notifications
 - [ ] Deployment
 
-### Phase 2: Enhancement
+### 🔮 Phase 2: Enhancement
 - [ ] Assessment test integration
 - [ ] Document e-signature
 - [ ] Cohort management
-- [ ] Advanced analytics
+- [ ] Analytics dashboard
 - [ ] Bulk email
-- [ ] Export to CSV
+- [ ] Export CSV
+
+---
+
+## 🚢 Deployment
+
+### Vercel (Recommended)
+
+```bash
+# Push to GitHub
+git push origin main
+
+# Deploy via Vercel CLI
+npm install -g vercel
+vercel
+
+# Atau via Vercel Dashboard
+# https://vercel.com → Import GitHub repo
+```
+
+Add environment variables di Vercel:
+- `NEXT_PUBLIC_SUPABASE_URL`
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+- `SUPABASE_SERVICE_ROLE_KEY`
+- `RESEND_API_KEY`
+
+---
+
+## 📚 Documentation
+
+- **Full Analysis:** [docs/ANALISIS_CODING_CAMP_WEBSITE.md](docs/ANALISIS_CODING_CAMP_WEBSITE.md)
+- **Database Schema:** [docs/database-schema.sql](docs/database-schema.sql)
+- **GitHub:** [GuavaPopper/enrollment-system](https://github.com/GuavaPopper/enrollment-system)
+
+---
+
+## 💰 Estimasi Budget
+
+### Development
+- **DIY:** Rp 150k-500k/tahun (hosting + domain)
+- **Freelancer:** Rp 5-8 juta (MVP)
+
+### Operational
+- **Monthly:** ~Rp 108.500/bulan
+  - Domain: Rp 12.500
+  - VPS: Rp 96.000
+  - Others: Gratis (Supabase + Vercel free tier)
+
+---
 
 ## 🤝 Contributing
 
 1. Fork repository
-2. Create feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to branch (`git push origin feature/AmazingFeature`)
+2. Create feature branch: `git checkout -b feature/AmazingFeature`
+3. Commit: `git commit -m 'Add AmazingFeature'`
+4. Push: `git push origin feature/AmazingFeature`
 5. Open Pull Request
+
+---
 
 ## 📄 License
 
-MIT License - see [LICENSE](LICENSE) file for details
+MIT License
 
-## 🙋 Support
-
-- **Documentation:** [ANALISIS_CODING_CAMP_WEBSITE.md](docs/ANALISIS_CODING_CAMP_WEBSITE.md)
-- **Issues:** [GitHub Issues](https://github.com/GuavaPopper/enrollment-system/issues)
+---
 
 ## 🎓 Credits
 
-Project terinspirasi dari [DBS Foundation Coding Camp 2026](https://www.dbs.com/spark/index/id_id/site/codingcamp/index.html)
-
----
+Inspired by [DBS Foundation Coding Camp 2026](https://www.dbs.com/spark/index/id_id/site/codingcamp/index.html)
 
 **Built with ❤️ by AbangAdit**

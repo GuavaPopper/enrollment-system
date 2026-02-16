@@ -134,7 +134,7 @@ cohort_members
 
 ---
 
-## 🎨 **TECH STACK (ESTIMASI)**
+## 🎨 **TECH STACK**
 
 ### **Frontend:**
 - React.js / Next.js
@@ -202,250 +202,6 @@ cohort_members
 
 ---
 
-## 💡 **PROMPT UNTUK MVP**
-
----
-
-# 📝 **PROMPT 1: UNTUK AI CODE GENERATOR (v0, Bolt.new, Lovable, dll)**
-
-```
-Buatkan MVP website enrollment system untuk bootcamp/program training dengan fitur:
-
-**USER SIDE:**
-1. Landing page dengan:
-   - Hero section (judul program, deskripsi singkat)
-   - Timeline pendaftaran (2 kategori: Siswa SMK & Mahasiswa/Umum)
-   - CTA button "Daftar Sekarang"
-
-2. Multi-step registration form:
-   - Step 1: Data Pribadi (nama, email, phone, kategori [SMK/Mahasiswa/Umum], sekolah/kampus)
-   - Step 2: Upload Dokumen (foto KTM/Kartu Pelajar, Surat Rekomendasi)
-   - Step 3: Konfirmasi & Submit
-   - Progress indicator untuk tracking step
-
-3. User Dashboard:
-   - Login/Register dengan email
-   - View status aplikasi (Pending/Reviewing/Accepted/Rejected)
-   - Download surat penerimaan (jika diterima)
-   - Timeline progress
-
-**ADMIN SIDE:**
-4. Admin Dashboard:
-   - Login admin
-   - List semua aplikasi dengan filter (status, kategori)
-   - Detail view aplikasi (data + dokumen)
-   - Action: Approve/Reject dengan keterangan
-   - Send email notification otomatis
-
-**TECH STACK:**
-- Frontend: Next.js + Tailwind CSS + shadcn/ui
-- Backend: Next.js API Routes / Supabase
-- Database: Supabase (PostgreSQL)
-- Auth: Supabase Auth
-- File Storage: Supabase Storage
-- Email: Resend / SendGrid
-
-**STYLING:**
-- Modern, clean design
-- Responsive (mobile-first)
-- Primary color: Blue (#1E40AF)
-- Accent: Orange (#F97316)
-
-Buatkan project lengkap dengan folder structure, semua file yang dibutuhkan, dan instruksi setup.
-```
-
----
-
-# 📝 **PROMPT 2: UNTUK CURSOR AI / WINDSURF (Step-by-Step)**
-
-```
-Saya ingin membuat MVP Enrollment Management System untuk bootcamp.
-
-**PROJECT SETUP:**
-Buatkan Next.js 15 project dengan:
-- TypeScript
-- Tailwind CSS
-- shadcn/ui components
-- Supabase (database + auth + storage)
-- Folder structure: app router, components, lib, types
-
-**DATABASE SCHEMA:**
-Buatkan Supabase schema untuk:
-1. users table (id, email, name, phone, category, role)
-2. applications table (id, user_id, status, personal_data JSON, created_at)
-3. documents table (id, application_id, type, file_url)
-
-**FEATURES (Build Step-by-Step):**
-
-STEP 1: Landing Page
-- Hero section dengan gradient background
-- Timeline section (2 columns: SMK vs Mahasiswa)
-- CTA button redirect ke /register
-
-STEP 2: Registration Flow
-- Multi-step form (3 steps) dengan progress indicator
-- Step 1: Personal data form (React Hook Form + Zod validation)
-- Step 2: File upload (drag-and-drop, max 2MB)
-- Step 3: Review & submit
-- Save progress di localStorage (draft mode)
-
-STEP 3: User Dashboard
-- Protected route (login required)
-- Card showing application status
-- Timeline stepper (visual progress)
-- Download button (jika accepted)
-
-STEP 4: Admin Dashboard
-- Separate route /admin (protected)
-- Table dengan filter & search
-- Modal untuk view detail + approve/reject
-- Email trigger after status update
-
-Buatkan kode untuk STEP 1 dulu.
-```
-
----
-
-# 📝 **PROMPT 3: UNTUK FREELANCER / DEVELOPER**
-
-```
-**PROJECT BRIEF: Enrollment Management System MVP**
-
-**Background:**
-Kami ingin membuat website pendaftaran online untuk program bootcamp/training, mirip dengan:
-https://www.dbs.com/spark/index/id_id/site/codingcamp/index.html
-
-**Target Users:**
-- Pelamar (Siswa SMK, Mahasiswa, Umum)
-- Admin (review & manage aplikasi)
-
-**Core Features (MVP):**
-
-1. **Landing Page**
-   - Hero section dengan branding program
-   - Timeline pendaftaran (dual track: SMK vs Mahasiswa)
-   - Info tahapan seleksi
-   - CTA button "Daftar Sekarang"
-
-2. **User Registration & Application**
-   - Sign up/Login dengan email + password
-   - Email verification
-   - Multi-step form (3 steps):
-     - Personal data
-     - Document upload (KTM/Kartu Pelajar, Surat Rekomendasi)
-     - Review & confirmation
-   - Save draft functionality
-   - Progress tracking
-
-3. **User Dashboard**
-   - View application status (Pending/Under Review/Accepted/Rejected)
-   - Edit application (jika masih draft/pending)
-   - Download acceptance letter (jika diterima)
-
-4. **Admin Dashboard**
-   - Login admin (separate from user)
-   - View all applications (table dengan pagination)
-   - Filter by status/category
-   - Search by name/email
-   - View detail aplikasi (data + dokumen preview)
-   - Approve/Reject dengan notes
-   - Send email notification otomatis
-
-5. **Email Notifications**
-   - Welcome email setelah register
-   - Confirmation email setelah submit aplikasi
-   - Acceptance/Rejection email
-   - Reminder email (optional untuk MVP)
-
-**Technical Requirements:**
-- Responsive design (mobile & desktop)
-- Secure authentication
-- File upload (max 5MB per file, PDF/JPG/PNG)
-- Email service integration
-- Database dengan proper relations
-- Clean UI/UX (modern, professional)
-
-**Deliverables:**
-- Source code (GitHub repo)
-- Deployment (Vercel/Netlify)
-- Admin credentials
-- Basic documentation (README + user guide)
-
-**Timeline:** 3-4 minggu
-**Budget:** [Sesuaikan dengan budget kamu]
-
-**Tech Stack Preference:**
-- Next.js + Tailwind CSS (frontend)
-- Supabase atau Firebase (backend)
-- Vercel (deployment)
-
-Mohon provide proposal dengan:
-1. Estimasi timeline detail per fitur
-2. Total cost breakdown
-3. Portfolio project serupa (jika ada)
-```
-
----
-
-## 🎯 **REKOMENDASI APPROACH**
-
-### **Jika Kamu Developer (Ada Skill Coding):**
-
-**Gunakan Prompt 2** dengan **Cursor AI / Windsurf**
-
-**Workflow:**
-1. Setup project Next.js + Supabase
-2. Build landing page dulu (front-end only)
-3. Setup database schema
-4. Build registration form (step-by-step)
-5. Build user dashboard
-6. Build admin panel
-7. Integrate email notification
-8. Testing & deployment
-
-**Timeline:** 2-3 minggu (part-time)
-**Budget:** Gratis (Supabase free tier + Vercel free hosting)
-
----
-
-### **Jika Non-Developer (No Coding Skill):**
-
-**Gunakan Prompt 1** dengan **v0.dev, Bolt.new, atau Lovable.dev**
-
-**Tools:**
-- **v0.dev** (by Vercel) - Generate React components from prompt
-- **Bolt.new** - Full-stack web app builder
-- **Lovable.dev** - AI web app builder dengan Supabase integration
-
-**Workflow:**
-1. Paste prompt 1 ke tool
-2. Generate initial project
-3. Iterate dengan feedback ("tambahkan fitur X", "ubah warna Y")
-4. Export & deploy
-
-**Timeline:** 1-2 minggu (dengan banyak iteration)
-**Budget:** $20-50/bulan (subscription tool)
-
----
-
-### **Jika Budget Ada (Mau Hire Developer):**
-
-**Gunakan Prompt 3** untuk brief ke freelancer
-
-**Platform:**
-- Upwork
-- Fiverr
-- Sribulancer (Indonesia)
-- Projects.co.id
-
-**Budget Estimasi:**
-- Freelancer Indonesia: Rp 5-10 juta (MVP)
-- Freelancer Internasional: $500-1,500 (MVP)
-
-**Timeline:** 3-4 minggu
-
----
-
 ## 📋 **CHECKLIST MVP (MINIMAL)**
 
 ### **Must Have (Priority 1):**
@@ -479,61 +235,307 @@ Mohon provide proposal dengan:
 
 ---
 
-## 💰 **BUDGET BREAKDOWN (Opsi)**
+## 💰 **ESTIMASI BIAYA & TIMELINE**
 
-### **Opsi 1: DIY (Self-Build dengan AI Tool)**
-- AI Tool subscription (Cursor/v0/Bolt): $20-50/bulan
-- Hosting (Vercel): Gratis
-- Database (Supabase): Gratis (free tier)
-- Domain (.com): Rp 150.000/tahun
-- Email service (SendGrid): Gratis (100 email/hari)
+### **Development Cost:**
+- **DIY (Self-Build):** Rp 150.000 - 500.000/tahun (hosting + domain + services)
+- **Freelancer Mahasiswa:** Rp 5.000.000 - 8.000.000
+- **Professional Developer:** Rp 10.000.000 - 15.000.000
 
-**Total:** **Rp 150.000-500.000** (first year) + **waktu kamu**
+### **Operational Cost (Monthly):**
+- Domain .com: ~Rp 12.500/bulan
+- Hosting (VPS): ~Rp 96.000/bulan
+- Database (Supabase free tier): Gratis
+- Email service (SendGrid free tier): Gratis
+- **Total: ~Rp 108.500/bulan**
 
----
-
-### **Opsi 2: Hire Freelancer Mahasiswa**
-- Development: Rp 5.000.000 - 7.000.000
-- Hosting + Domain + Services: Rp 500.000/tahun
-- Maintenance (optional): Rp 500.000-1.000.000/tahun
-
-**Total:** **Rp 5.500.000 - 8.000.000** (first year)
-
----
-
-### **Opsi 3: Hire Professional Freelancer**
-- Development: Rp 10.000.000 - 15.000.000
-- Hosting + Domain + Services: Rp 1.000.000/tahun
-- Maintenance: Rp 2.000.000/tahun
-
-**Total:** **Rp 13.000.000 - 18.000.000** (first year)
+### **Timeline:**
+- **MVP Development:** 2-4 minggu
+- **Testing & Refinement:** 1-2 minggu
+- **Total:** 3-6 minggu (1.5 bulan)
 
 ---
 
-## 🚀 **KESIMPULAN**
+## 🎯 **REKOMENDASI TECH STACK UNTUK MVP**
 
-**Untuk MVP website seperti Coding Camp DBS Foundation:**
+### **Frontend:**
+- **Framework:** Next.js 15 (App Router)
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS
+- **UI Components:** shadcn/ui
+- **Form:** React Hook Form + Zod validation
+- **State:** React Context / Zustand
 
-✅ **Fungsi Inti:** Enrollment management system dengan multi-step registration & admin approval
+### **Backend:**
+- **Database:** Supabase (PostgreSQL)
+- **Auth:** Supabase Auth
+- **Storage:** Supabase Storage
+- **API:** Next.js API Routes
 
-✅ **Timeline Realistis:** 2-4 minggu (tergantung approach)
+### **Services:**
+- **Email:** Resend / SendGrid
+- **Deployment:** Vercel (gratis)
+- **Domain:** Namecheap / Cloudflare
 
-✅ **Budget Range:** Rp 150k - 15 juta (tergantung opsi)
-
-✅ **Rekomendasi Tech Stack:**
-- Frontend: Next.js + Tailwind CSS + shadcn/ui
-- Backend: Supabase (all-in-one BaaS)
-- Deployment: Vercel
-- Email: SendGrid/Resend
-
-✅ **Best Prompt:** Gunakan **Prompt 2** jika pakai Cursor AI (step-by-step build)
+### **Why This Stack?**
+✅ **All-in-one:** Supabase provides database + auth + storage + API
+✅ **Free tier:** Supabase + Vercel free tier cukup untuk MVP
+✅ **Fast development:** Next.js + shadcn/ui = rapid prototyping
+✅ **Type-safe:** TypeScript + Zod = less bugs
+✅ **Scalable:** Mudah scale up jika needed
 
 ---
 
-**Mau saya bantu:**
-1. Setup project structure-nya?
-2. Buatkan database schema lengkap?
-3. Design mockup untuk landing page & dashboard?
-4. Tulis technical spec document untuk developer?
+## 📝 **DEVELOPMENT GUIDE**
 
-Kasih tau! 🧆💻🚀
+### **Step-by-Step Build Process:**
+
+#### **Phase 1: Setup Project**
+1. Initialize Next.js 15 + TypeScript
+2. Setup Tailwind CSS + shadcn/ui
+3. Configure Supabase client
+4. Setup environment variables
+5. Create folder structure
+
+#### **Phase 2: Database Setup**
+1. Create Supabase project
+2. Run database schema migration
+3. Configure Row Level Security (RLS)
+4. Setup authentication
+
+#### **Phase 3: Landing Page**
+1. Design hero section
+2. Timeline component (dual track)
+3. Tahapan seleksi section
+4. CTA button → register page
+
+#### **Phase 4: Authentication**
+1. Register page (sign up form)
+2. Login page
+3. Email verification flow
+4. Protected routes
+
+#### **Phase 5: Multi-Step Form**
+1. Step 1: Personal data (name, email, phone, category, institution)
+2. Step 2: Document upload (KTM/Kartu Pelajar, Surat Rekomendasi)
+3. Step 3: Review & confirmation
+4. Progress indicator/stepper
+5. Save draft functionality
+
+#### **Phase 6: User Dashboard**
+1. Application status card
+2. Progress timeline
+3. Edit application (if draft/pending)
+4. Download documents
+
+#### **Phase 7: Admin Dashboard**
+1. Login admin (separate auth)
+2. Applications table (with pagination)
+3. Filter by status/category
+4. Search by name/email
+5. View detail modal
+6. Approve/Reject action
+7. Email notification trigger
+
+#### **Phase 8: Email Notifications**
+1. Setup email service (Resend/SendGrid)
+2. Templates: Welcome, Confirmation, Acceptance, Rejection
+3. Auto-send on status change
+4. Track email sent status
+
+#### **Phase 9: Testing & Deployment**
+1. Manual testing semua flow
+2. Fix bugs
+3. Deploy to Vercel
+4. Configure custom domain
+5. Test production
+
+---
+
+## 📂 **PROJECT STRUCTURE**
+
+```
+enrollment-system/
+├── app/                      # Next.js 15 App Router
+│   ├── (auth)/
+│   │   ├── login/           # Login page
+│   │   └── register/        # Register page
+│   ├── (user)/
+│   │   ├── dashboard/       # User dashboard
+│   │   └── apply/           # Multi-step form
+│   ├── (admin)/
+│   │   └── dashboard/       # Admin dashboard
+│   ├── api/                 # API routes
+│   │   ├── applications/
+│   │   ├── notifications/
+│   │   └── auth/
+│   ├── layout.tsx           # Root layout
+│   └── page.tsx             # Landing page
+├── components/              # React components
+│   ├── ui/                 # shadcn/ui components
+│   ├── forms/              # Form components
+│   ├── layouts/            # Layout components
+│   └── shared/             # Shared components
+├── lib/                    # Utilities & configs
+│   ├── supabase/           # Supabase client & queries
+│   │   ├── client.ts
+│   │   ├── queries.ts
+│   │   └── mutations.ts
+│   ├── validations/        # Zod schemas
+│   │   ├── application.ts
+│   │   └── user.ts
+│   ├── email/              # Email templates
+│   └── utils.ts            # Helper functions
+├── types/                  # TypeScript types
+│   ├── database.ts
+│   └── application.ts
+├── public/                 # Static assets
+│   ├── images/
+│   └── icons/
+├── docs/                   # Documentation
+│   ├── ANALISIS_CODING_CAMP_WEBSITE.md
+│   ├── database-schema.sql
+│   └── API.md
+├── .env.local.example      # Environment variables template
+├── package.json
+├── tsconfig.json
+├── tailwind.config.ts
+└── README.md
+```
+
+---
+
+## 🔧 **SETUP INSTRUCTIONS**
+
+### **1. Prerequisites**
+- Node.js 18+
+- npm / pnpm / yarn
+- Git
+- Supabase account (gratis)
+- Resend/SendGrid account (gratis)
+
+### **2. Installation**
+
+```bash
+# Clone repository
+git clone https://github.com/GuavaPopper/enrollment-system.git
+cd enrollment-system
+
+# Install dependencies
+npm install
+
+# Copy environment variables
+cp .env.local.example .env.local
+```
+
+### **3. Supabase Setup**
+
+1. **Buat project di Supabase:** https://supabase.com
+2. **Jalankan SQL migration:** Copy isi `docs/database-schema.sql` dan run di Supabase SQL Editor
+3. **Get credentials:** Dashboard → Settings → API
+4. **Update `.env.local`:**
+
+```env
+NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
+SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
+```
+
+### **4. Email Service Setup**
+
+**Option A: Resend (Recommended)**
+1. Sign up: https://resend.com
+2. Get API key
+3. Add to `.env.local`:
+```env
+RESEND_API_KEY=re_xxx
+```
+
+**Option B: SendGrid**
+1. Sign up: https://sendgrid.com
+2. Get API key
+3. Add to `.env.local`:
+```env
+SENDGRID_API_KEY=SG.xxx
+```
+
+### **5. Run Development Server**
+
+```bash
+npm run dev
+```
+
+Open http://localhost:3000
+
+### **6. Create Admin User**
+
+Via Supabase SQL Editor:
+```sql
+-- Insert admin user (after register via UI)
+UPDATE users 
+SET role = 'admin' 
+WHERE email = 'your-email@example.com';
+```
+
+---
+
+## 🚀 **DEPLOYMENT (VERCEL)**
+
+### **1. Push to GitHub**
+```bash
+git add .
+git commit -m "Ready for deployment"
+git push origin main
+```
+
+### **2. Deploy to Vercel**
+1. Go to: https://vercel.com
+2. Import GitHub repository
+3. Add environment variables (sama seperti `.env.local`)
+4. Deploy!
+
+### **3. Configure Custom Domain (Optional)**
+1. Buy domain (Namecheap, Cloudflare, dll)
+2. Add to Vercel: Settings → Domains
+3. Update DNS records
+
+---
+
+## 📊 **API ENDPOINTS (PLANNED)**
+
+### **Authentication**
+- `POST /api/auth/register` - Register user
+- `POST /api/auth/login` - Login user
+- `POST /api/auth/logout` - Logout user
+- `GET /api/auth/me` - Get current user
+
+### **Applications**
+- `GET /api/applications` - List applications (admin)
+- `GET /api/applications/:id` - Get application detail
+- `POST /api/applications` - Create application
+- `PUT /api/applications/:id` - Update application
+- `DELETE /api/applications/:id` - Delete application
+- `POST /api/applications/:id/submit` - Submit application
+- `POST /api/applications/:id/approve` - Approve (admin)
+- `POST /api/applications/:id/reject` - Reject (admin)
+
+### **Documents**
+- `POST /api/documents/upload` - Upload file
+- `GET /api/documents/:id` - Get document
+- `DELETE /api/documents/:id` - Delete document
+
+### **Notifications**
+- `GET /api/notifications` - List notifications (user)
+- `POST /api/notifications/send` - Send notification (admin)
+- `PUT /api/notifications/:id/read` - Mark as read
+
+---
+
+## 🎓 **CREDITS**
+
+Project terinspirasi dari:
+- [DBS Foundation Coding Camp 2026](https://www.dbs.com/spark/index/id_id/site/codingcamp/index.html)
+
+---
+
+**Built with ❤️ using Next.js + Supabase**
