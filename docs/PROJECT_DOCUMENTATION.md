@@ -1685,5 +1685,3 @@ font-family: 'Outfit', sans-serif;
 **Status:** Ready for Development
 
 ---
-
-*Dokumen ini adalah dokumentasi lengkap untuk HMIF Bootcamp Enrollment System. Untuk panduan development dengan Antigravity, lihat `ANTIGRAVITY_GUIDE.md`.*
