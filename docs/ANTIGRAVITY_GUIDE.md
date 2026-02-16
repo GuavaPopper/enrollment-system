@@ -22,10 +22,12 @@ Panduan lengkap untuk membangun Enrollment Management System menggunakan **Antig
 
 ### 2. Requirements Summary
 
-**Project Type:** Enrollment Management System (web app)
+**Project Type:** Enrollment Management System dengan **Awwwards-level Scrollytelling Design**
+
+**Design Philosophy:** Modern, interactive, scroll-driven storytelling dengan image sequence animation
 
 **Core Features:**
-- Landing page dengan hero + timeline
+- **Modern scrollytelling landing page** dengan image sequence hero
 - Multi-step registration form (3 steps)
 - User dashboard (track application status)
 - Admin dashboard (manage applications)
@@ -49,25 +51,134 @@ Gunakan prompt ini di Antigravity untuk generate project:
 ### **PROMPT UNTUK ANTIGRAVITY**
 
 ```
-Build an Enrollment Management System for bootcamp/training programs.
+Build an Enrollment Management System for bootcamp/training programs with AWWWARDS-LEVEL MODERN SCROLLYTELLING DESIGN.
 
 === OVERVIEW ===
-A full-stack web application for managing bootcamp enrollments with multi-step registration, admin approval workflow, and automated email notifications.
+A high-end, interactive full-stack web application featuring scroll-driven storytelling with image sequence animation, multi-step registration, admin workflow, and automated notifications.
+
+DESIGN INSPIRATION: Awwwards-winning websites with scroll-linked animations, seamless interactions, and premium aesthetics.
 
 === USER ROLES ===
-1. Applicants (Students/Public) - Register and track application
-2. Admins - Review, approve/reject applications
+1. Applicants (Students/Public) - Experience the scrollytelling landing, register, track application
+2. Admins - Review, approve/reject applications, manage cohorts
+
+=== DESIGN PHILOSOPHY ===
+
+VISUAL DIRECTION:
+- Modern, premium, Awwwards-level aesthetics
+- Scroll-driven storytelling (scrollytelling)
+- Image sequence animation (100-200 frames)
+- Seamless blending (background matches image sequence)
+- Smooth, buttery scrolling (Lenis library)
+- Micro-interactions everywhere
+- Dark theme with vibrant accents
+
+TYPOGRAPHY:
+- Font: "Outfit" from Google Fonts
+- Style: Clean, minimalist, tracking-tight
+- Large hero text (6xl-8xl), readable body (base-lg)
+
+COLORS:
+- Background: #0A0A0A (match image sequence background)
+- Primary: Blue (#1E40AF)
+- Accent: Orange (#F97316)
+- Text: High contrast white/dark
+- Seamless blending for image edges
 
 === CORE FEATURES ===
 
-1. LANDING PAGE
-   - Hero section with CTA button "Daftar Sekarang"
-   - Timeline section (2 categories: SMK vs Mahasiswa/Umum)
-   - Program information
-   - **Bootcamp History section (showcase past cohorts)**
-   - Responsive design
+1. HERO SECTION - IMAGE SEQUENCE SCROLLYTELLING (AWWWARDS-LEVEL)
+   
+   THE CENTERPIECE:
+   - Container: h-[400vh] (4x viewport height for long scroll duration)
+   - Canvas element: sticky, top-0, h-screen, w-full, centered
+   - Image sequence: 100-200 frames (e.g., laptop rotating 360°, enrollment dashboard showcase)
+   - Frames path: /sequence/frame-001.jpg to frame-200.jpg
+   - Scroll mapping: User scroll 0-100% → frame 0-200 (smooth interpolation)
+   - Preload all images to prevent flickering
+   - Canvas rendering: HTML5 Canvas for performance
+   
+   TEXT OVERLAYS (fade in/out based on scroll %):
+   - 0% scroll: "Transform Your Future" + "Join Our Bootcamp 2026" (Center, large)
+   - 30% scroll: "Multi-Step Registration Made Simple" (Left aligned, fade in)
+   - 60% scroll: "Track Your Application Real-Time" (Right aligned, fade in)
+   - 90% scroll: "Apply Now" (Center, MAGNETIC BUTTON with spring animation)
+   
+   TECHNICAL:
+   - Use Motion (Framer Motion) useScroll + useTransform
+   - Smooth frame interpolation (no stutter)
+   - Responsive: scale canvas correctly on mobile (cover fit)
+   - Loading state: Awwwards-style preloader while images load
 
-2. BOOTCAMP HISTORY (NEW FEATURE)
+2. LANDING PAGE SECTIONS (Below Hero, wrapped in -mt-[100vh] relative z-10)
+   
+   ORDER:
+   a) About Section - TEXT REVEAL ANIMATION
+      - Split text into individual characters
+      - Each character reveals (opacity 0 → 1) as user scrolls
+      - Scroll-scrubbed animation (IntersectionObserver)
+      - Large headline with subtext
+   
+   b) Program Features - BENTO GRID CARDS
+      - Modern bento-style grid layout (varied sizes)
+      - Cards with images, hover effects (scale + glow)
+      - Parallax on scroll (slight movement)
+      - Staggered fade-in animation
+   
+   c) Bootcamp History - COHORT SHOWCASE
+      - Year filter tabs (2025, 2024, 2023, All Years)
+      - Cohort cards with cover image, highlights, CTA
+      - Detail page: full image, stats, success stories, photo gallery (lightbox)
+      - Public access, smooth transitions
+   
+   d) Stats Section - COUNT-UP NUMBERS
+      - Large numbers (1000+ Graduates, 500+ Companies, 95% Success Rate)
+      - Count-up animation from 0 to target when in view
+      - Duration: 2s, easing: easeOut
+      - Icons + labels
+   
+   e) Testimonials - FULLSCREEN AUTOPLAY SLIDER
+      - Each slide: fullscreen background + centered quote
+      - Participant photo, name, position, testimonial
+      - Autoplay (5s interval), pause on hover
+      - Progress dots, smooth crossfade transitions
+   
+   f) Timeline - REGISTRATION JOURNEY
+      - Horizontal/vertical timeline (responsive)
+      - Steps: Registration → Review → Acceptance → Bootcamp
+      - Animated progress line
+   
+   g) CTA Section - ANIMATED GRADIENT BACKGROUND
+      - Animated mesh gradient (floating blurred blobs)
+      - Large headline + magnetic button
+      - Subtle infinite loop animation
+   
+   h) Footer - CLEAN & MODERN
+      - Logo, links, social icons, copyright
+      - Minimal design
+
+3. NAVBAR - AWWWARDS-LEVEL FULLSCREEN MENU
+   
+   DEFAULT STATE:
+   - Minimal: Logo (left) + Menu button (right)
+   - Fixed position, backdrop blur on scroll
+   
+   MENU OPENED (fullscreen overlay):
+   - Fullscreen dark backdrop with blur
+   - Large navigation links (6xl-8xl text):
+     * HOME
+     * ABOUT
+     * PROGRAM
+     * HISTORY
+     * APPLY
+     * CONTACT
+   - Stagger reveal animation (top to bottom)
+   - Hover effect: underline expand from center
+   - Bottom: Social media icons (LinkedIn, Instagram, Twitter)
+   - Bottom right: Contact (email, phone)
+   - Close button (X) with smooth transition
+
+4. BOOTCAMP HISTORY (Detailed)
    - Display past bootcamp cohorts (completed programs)
    - Year filter tabs (2025, 2024, 2023, All Years)
    - Cohort cards with:
@@ -94,13 +205,13 @@ A full-stack web application for managing bootcamp enrollments with multi-step r
    - Public access (no login required)
    - Smooth animations & transitions
 
-3. AUTHENTICATION
+4. AUTHENTICATION
    - User registration (email + password)
    - Login/Logout
    - Email verification (optional for MVP)
    - Protected routes
 
-4. MULTI-STEP REGISTRATION FORM (User)
+5. MULTI-STEP REGISTRATION FORM (User)
    - Step 1: Personal Data
      * Full name
      * Email
@@ -208,8 +319,16 @@ Frontend:
 - TypeScript
 - Tailwind CSS
 - shadcn/ui components (Button, Input, Card, Table, Dialog, Form, Select, Progress)
+- **Motion (Framer Motion)** - for all animations
+- **@studio-freight/lenis** - for smooth scroll
 - React Hook Form + Zod validation
 - Lucide icons
+- Google Fonts (Outfit)
+
+Animation Libraries:
+- framer-motion (useScroll, useTransform, motion components)
+- @studio-freight/lenis (smooth scroll)
+- Canvas API (image sequence rendering)
 
 Backend:
 - Supabase (PostgreSQL database)
@@ -301,23 +420,39 @@ Table: cohort_members
 === DESIGN REQUIREMENTS ===
 
 Colors:
+- Background: #0A0A0A (dark, matches image sequence)
+- Background Secondary: #1A1A1A
 - Primary: Blue (#1E40AF)
 - Accent: Orange (#F97316)
 - Success: Green (#10B981)
 - Error: Red (#EF4444)
-- Neutral: Gray scale
+- Text Primary: #FFFFFF
+- Text Secondary: #A0A0A0
+- Seamless blending for image sequence edges
 
 Typography:
-- Font family: Inter (sans-serif)
-- Headings: Bold, larger sizes
-- Body: Regular weight
+- Font family: **Outfit** from Google Fonts (NOT Inter)
+- Hero text: 6xl-8xl, bold, tracking-tight
+- Section headlines: 4xl-5xl, semibold
+- Body: base-lg, regular weight
+- Clean, minimalist aesthetic
+
+Animations & Interactions:
+- Smooth scroll: Lenis library (buttery smooth)
+- Hero: Image sequence animation (Canvas-based)
+- Text: Character-by-character reveal
+- Buttons: Magnetic effect (spring animation)
+- Cards: Hover scale + glow
+- Sections: Fade in on scroll (IntersectionObserver)
+- Navbar: Fullscreen menu with stagger reveal
+- All transitions: smooth, eased (no sudden movements)
 
 Components:
-- Use shadcn/ui for consistency
+- Use shadcn/ui for forms, dialogs, tables
+- Custom components for scrollytelling (SequenceScroll, TextReveal, MagneticButton)
 - Responsive (mobile-first)
-- Modern, clean interface
-- Card-based layouts
-- Smooth transitions
+- Card-based layouts with hover effects
+- Dark theme with vibrant accents
 
 === PAGES & ROUTES ===
 
@@ -378,6 +513,58 @@ API Routes:
    - HTML email templates
    - Include application data in emails
    - Track email sent status
+   - Retry mechanism for failed sends
+
+5. Security:
+   - Row Level Security (RLS) enabled on Supabase
+   - Users can only view/edit own applications
+   - Admins can view all applications
+   - File access controlled via signed URLs
+   - Input sanitization
+
+6. Scrollytelling Implementation (CRITICAL):
+   
+   a) Image Sequence Component (SequenceScroll.tsx):
+      - Container: div with h-[400vh] for scroll duration
+      - Canvas: sticky top-0 h-screen w-full
+      - Preload ALL 100-200 images on component mount (loading state)
+      - Use Motion's useScroll hook: target container, offset ["start start", "end end"]
+      - Use useTransform to map scrollYProgress (0-1) to frame index (0-193)
+      - Draw current frame to canvas on every scroll tick (smooth interpolation)
+      - Text overlays: motion.div with opacity based on scroll progress
+      - Mobile: reduce frames (e.g., 50 frames instead of 200)
+   
+   b) Smooth Scroll (Lenis):
+      - Initialize Lenis in layout.tsx or root component
+      - Integrate with RequestAnimationFrame loop
+      - Smooth multiplier: 1.0 (buttery smooth)
+      - Direction: vertical
+   
+   c) Text Reveal (TextReveal.tsx):
+      - Split text into array of characters
+      - Each char: motion.span with initial opacity: 0
+      - Use whileInView: opacity: 1
+      - Transition delay: index * 0.05 (stagger effect)
+      - viewport: once: true
+   
+   d) Magnetic Button (MagneticButton.tsx):
+      - Track mouse position relative to button center
+      - Use useMotionValue for x, y offset
+      - Apply useSpring for smooth spring animation
+      - onMouseMove: calculate offset, set x/y
+      - onMouseLeave: reset to 0
+      - motion.button with style={{ x, y }}
+   
+   e) Count-Up Numbers:
+      - Use IntersectionObserver to detect when in view
+      - Animate from 0 to target number (2s duration, easeOut)
+      - Display with toLocaleString() for thousands separator
+   
+   f) Fullscreen Slider (Testimonials):
+      - Auto-advance every 5s (pause on hover)
+      - Smooth crossfade transition between slides
+      - Progress dots indicator
+      - Each slide: fullscreen background, centered content
    - Retry mechanism for failed sends
 
 5. Security:
